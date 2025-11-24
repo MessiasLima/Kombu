@@ -1,7 +1,15 @@
 {
-  "context": {
-    "fileName": [
-      "AGENTS.md"
-    ]
-  }
+    "context": {
+        "fileName": [
+            "AGENTS.md"
+        ]
+    },
+    "mcpServers": {
+        "AFFiNE": {
+            "httpUrl": "https://affine.appoutlet.dev/api/workspaces/fc015cfd-353b-4439-8cb7-7232120fae46/mcp",
+            "headers": {
+                "Authorization": "Bearer ${AFFINE_TOKEN}"
+            }
+        }
+    }
 }

@@ -37,3 +37,4 @@ composeApp/MediaDeviceSalts-journal
 i18n.cache
 *.log
 mapping.txt
+.gemini/.env
