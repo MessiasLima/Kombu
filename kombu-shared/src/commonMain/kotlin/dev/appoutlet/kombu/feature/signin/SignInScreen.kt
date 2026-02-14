@@ -8,10 +8,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation3.runtime.NavKey
 import dev.appoutlet.kombu.LocalNavigator
-import dev.appoutlet.kombu.feature.websites.WebsitesDestination
-import kotlinx.serialization.Serializable
+import dev.appoutlet.kombu.feature.main.MainDestination
 
 @Composable
 fun SignInScreen() {
@@ -22,13 +20,10 @@ fun SignInScreen() {
             Text(text = "Sign In")
 
             Button(onClick = {
-                navigator.navigate(WebsitesDestination)
+                navigator.navigate(MainDestination)
             }) {
                 Text("Go to Main")
             }
         }
     }
 }
-
-@Serializable
-data object SignInDestination : NavKey

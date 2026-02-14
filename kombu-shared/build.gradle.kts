@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.compose)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.serialization)
+    alias(libs.plugins.ksp)
 }
 
 kotlin {
@@ -31,23 +32,53 @@ kotlin {
     jvm()
 
     sourceSets {
-        commonMain.dependencies {
-            implementation(libs.compose.foundation)
-            implementation(libs.compose.material3)
-            implementation(libs.compose.runtime)
-            implementation(libs.compose.ui)
-            implementation(libs.compose.components.resources)
-            implementation(libs.compose.components.uiToolingPreview)
-            implementation(libs.lifecycle.viewModel)
-            implementation(libs.lifecycle.runtimeCompose)
-            implementation(libs.navigation3.ui)
-            implementation(libs.lucideIcons)
-            implementation(libs.material3.adaptive.navigation3)
-            implementation(libs.material3.adaptive.navigationSuite)
+        commonMain {
+            dependencies {
+                implementation(libs.compose.foundation)
+                implementation(libs.compose.material3)
+                implementation(libs.compose.runtime)
+                implementation(libs.compose.ui)
+                implementation(libs.compose.components.resources)
+                implementation(libs.compose.components.uiToolingPreview)
+                implementation(libs.lifecycle.viewModel)
+                implementation(libs.lifecycle.runtimeCompose)
+                implementation(libs.navigation3.ui)
+                implementation(libs.lucideIcons)
+                implementation(libs.material3.adaptive.navigation3)
+                implementation(libs.material3.adaptive.navigationSuite)
+                implementation(libs.kermit.core)
+                implementation(libs.kermit.koin)
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose)
+                implementation(libs.koin.compose.viewModel)
+                implementation(libs.koin.annotations)
+            }
+
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
         }
 
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
     }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
+    if (name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
+dependencies {
+    // Per-platform KSP configuration required
+    add("kspCommonMainMetadata", libs.koin.kspCompiler)
+    add("kspAndroid", libs.koin.kspCompiler)
+    add("kspIosArm64", libs.koin.kspCompiler)
+    add("kspIosSimulatorArm64", libs.koin.kspCompiler)
+}
+
+// region KSP
+ksp {
+    arg("KOIN_DEFAULT_MODULE", "false")
+    arg("KOIN_CONFIG_CHECK","false")
 }
