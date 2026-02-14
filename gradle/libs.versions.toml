@@ -37,7 +37,7 @@ compose-hotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "co
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kover = "org.jetbrains.kotlinx.kover:0.9.2"
+kover = "org.jetbrains.kotlinx.kover:0.9.7"
 ksp = "com.google.devtools.ksp:2.2.20-2.0.4"
 mokkery = "dev.mokkery:2.10.1"
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
