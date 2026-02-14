@@ -1,0 +1,27 @@
+version: 2
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    open-pull-requests-limit: 20
+    schedule:
+      interval: "weekly"
+    groups:
+      compose-libraries:
+        patterns:
+          - "org.jetbrains.compose.runtime:runtime*"
+          - "org.jetbrains.compose.ui:ui*"
+          - "org.jetbrains.compose.foundation:foundation*"
+          - "org.jetbrains.compose.material:material*"
+          - "org.jetbrains.compose.material3:material3*"
+          - "org.jetbrains.compose.material3.adaptive:adaptive*"
+          - "org.jetbrains.androidx.lifecycle:lifecycle-*"
+          - "org.jetbrains.androidx.navigation:navigation-*"
+          - "org.jetbrains.androidx.navigation3:navigation3-*"
+          - "org.jetbrains.androidx.navigationevent:navigationevent-compose"
+          - "org.jetbrains.androidx.savedstate:savedstate*"
+          - "org.jetbrains.androidx.window:window-core"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"

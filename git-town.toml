@@ -3,6 +3,7 @@
 [branches]
 main = "main"
 order = "asc"
+unknown-type = "feature"
 
 [create]
 new-branch-type = "feature"
@@ -11,13 +12,19 @@ stash = true
 
 [hosting]
 forge-type = "github"
+github-connector = "api"
+
+[propose]
+breadcrumb = "none"
 
 [ship]
 delete-tracking-branch = false
+ignore-uncommitted = false
 strategy = "api"
 
 [sync]
 auto-sync = true
+detached = false
 feature-strategy = "merge"
 perennial-strategy = "rebase"
 prototype-strategy = "merge"
