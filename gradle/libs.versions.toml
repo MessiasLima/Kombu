@@ -105,7 +105,7 @@ ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "kto
 ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
 ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 ktor-serialization-kotlinxJson = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
-umami = "dev.appoutlet:umami:0.1.12"
+umami = "dev.appoutlet:umami:0.4.0"
 webview = "io.github.kevinnzou:compose-webview-multiplatform:2.0.3"
 
 [bundles]
