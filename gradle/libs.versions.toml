@@ -14,7 +14,7 @@ kotest = "6.1.3"
 kotlin = "2.2.20"
 koin = "4.1.1"
 koin-annotations = "2.2.0"
-ktor = "3.3.1"
+ktor = "3.4.0"
 sentry = "0.19.0"
 
 [plugins]
