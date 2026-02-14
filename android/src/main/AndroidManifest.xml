@@ -8,7 +8,7 @@
         android:label="@string/app_name">
 
         <activity
-            android:name=".MainActivity"
+            android:name="dev.appoutlet.kombu.MainActivity"
             android:exported="true"
             android:theme="@android:style/Theme.Material.Light.NoActionBar">
             <intent-filter>
