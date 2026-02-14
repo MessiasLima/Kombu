@@ -8,13 +8,13 @@ coil = "3.3.0"
 coroutines = "1.10.2"
 compose-plugin = "1.10.1"
 detekt = "1.23.8"
-lifecycle = "2.9.6"
 kermit = "2.0.8"
 kotest = "6.1.3"
 kotlin = "2.3.10"
 koin = "4.1.1"
 koin-annotations = "2.3.1"
-ktor = "3.4.0"
+lifecycle = "2.9.6"
+navigation3 = "1.0.0-alpha06"
 sentry = "0.24.0"
 versionCode = "1"
 versionName = "1.0.0"
@@ -52,19 +52,12 @@ kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref =
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 lifecycle-viewModel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+navigation3-runtime = { module = "org.jetbrains.androidx.navigation3:navigation3-runtime", version.ref = "navigation3" }
+navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "navigation3" }
 serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.10.0"
 koin-core = { module = "io.insert-koin:koin-compose-viewmodel-navigation", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations" }
 sentry = { module = "io.sentry:sentry-kotlin-multiplatform", version.ref = "sentry" }
-ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-client-contentNegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
-ktor-client-resources = { module = "io.ktor:ktor-client-resources", version.ref = "ktor" }
-ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
-ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
-ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
-ktor-client-cio = { module = "io.ktor:ktor-client-cio", version.ref = "ktor" }
-ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
-ktor-serialization-kotlinxJson = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 umami = "dev.appoutlet:umami:0.4.0"
