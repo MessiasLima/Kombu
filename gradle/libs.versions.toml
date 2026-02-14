@@ -82,7 +82,7 @@ koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations" }
 koin-kspCompiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-annotations" }
-kottie = "io.github.ismai117:kottie:2.1.0"
+kottie = "io.github.ismai117:kottie:2.2.0"
 ksoup = "com.fleeksoft.ksoup:ksoup:0.2.5"
 revenuecat-purchases-core = { module = "com.revenuecat.purchases:purchases-kmp-core", version.ref = "revenuecat" }
 revenuecat-purchases-ui = { module = "com.revenuecat.purchases:purchases-kmp-ui", version.ref = "revenuecat" }
