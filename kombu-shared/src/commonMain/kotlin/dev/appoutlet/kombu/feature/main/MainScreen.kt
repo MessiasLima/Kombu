@@ -1,34 +1,34 @@
 package dev.appoutlet.kombu.feature.main
 
-import androidx.compose.material3.Scaffold
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.material3.adaptive.navigationsuite.NavigationSuiteScaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation3.runtime.NavKey
+import dev.appoutlet.kombu.LocalNavigator
+import dev.appoutlet.kombu.feature.links.LinksDestination
+import dev.appoutlet.kombu.feature.websites.WebsitesDestination
 import kotlinx.serialization.Serializable
 
 @Composable
 fun MainScreen() {
-    NavigationSuiteScaffold(
-        navigationSuiteItems = {
-            item(selected = true, icon = {}, label = {
-                Text("Websites")
-            }, onClick = {
+    val navigator = LocalNavigator.current
 
-            })
-            item(selected = true, icon = {}, label = {
-                Text("Links")
-            }, onClick = {})
-            item(selected = true, icon = {}, label = {
-                Text("Pixels")
-            }, onClick = {})
-            item(selected = true, icon = {}, label = {
-                Text("Settings")
-            }, onClick = {})
+    Column(modifier = Modifier.background(color = Color.Red)) {
+        SideEffect {
+            println("MainScreen SideEffect")
         }
-    ) {
-        Scaffold { paddingValues ->
 
+        Button(onClick = { navigator.navigate(WebsitesDestination) }) {
+            Text("Websites")
+        }
+
+        Button(onClick = { navigator.navigate(LinksDestination) }) {
+            Text("Links")
         }
     }
 }

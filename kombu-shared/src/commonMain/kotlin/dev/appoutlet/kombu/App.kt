@@ -12,10 +12,14 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
+import com.composables.icons.lucide.Globe
+import com.composables.icons.lucide.Link
+import com.composables.icons.lucide.Lucide
 import dev.appoutlet.kombu.feature.links.LinksDestination
 import dev.appoutlet.kombu.feature.links.LinksScreen
 import dev.appoutlet.kombu.feature.main.MainDestination
 import dev.appoutlet.kombu.feature.main.MainScreen
+import dev.appoutlet.kombu.feature.main.NavigationItem
 import dev.appoutlet.kombu.feature.main.NavigationSuiteSceneStrategy
 import dev.appoutlet.kombu.feature.main.rememberNavigationSuiteSceneStrategy
 import dev.appoutlet.kombu.feature.overview.OverviewDestination
@@ -46,33 +50,60 @@ private val config = SavedStateConfiguration {
     }
 }
 
+
+data class Navigator(val backStack: NavBackStack<NavKey>) {
+    fun navigate(destination: NavKey) {
+        if (backStack.last().hashCode() != destination.hashCode()) {
+            backStack.add(destination)
+        }
+    }
+
+    fun goBack() {
+        backStack.removeLastOrNull()
+    }
+}
+
 @Composable
 fun App() {
     MaterialTheme {
         val backStack = rememberNavBackStack(configuration = config, SignInDestination)
-        val navigationSuiteSceneStrategy = rememberNavigationSuiteSceneStrategy<NavKey>()
-
-        NavDisplay(
-            backStack = backStack,
-            entryDecorators = listOf(
-                rememberSaveableStateHolderNavEntryDecorator(),
+        val navigationSuiteSceneStrategy = rememberNavigationSuiteSceneStrategy<NavKey>(
+            NavigationItem(
+                label = "Websites",
+                icon = Lucide.Globe,
+                navKey = WebsitesDestination
             ),
-            sceneStrategy = navigationSuiteSceneStrategy,
-            entryProvider = entryProvider {
-                entry<SignInDestination> { SignInScreen() }
-                entry<MainDestination>(
-                    metadata = NavigationSuiteSceneStrategy.main()
-                ) { MainScreen() }
-                entry<WebsitesDestination>(
-                    metadata = NavigationSuiteSceneStrategy.tab()
-                ) { WebsitesScreen() }
-                entry<LinksDestination> { LinksScreen() }
-                entry<PixelsDestination> { PixelsScreen() }
-                entry<SettingsDestination> { SettingsScreen() }
-                entry<OverviewDestination> { OverviewScreen() }
-            },
+            NavigationItem(
+                label = "Links",
+                icon = Lucide.Link,
+                navKey = LinksDestination
+            )
         )
+
+        CompositionLocalProvider(
+            LocalNavigator provides Navigator(backStack)
+        ) {
+            NavDisplay(
+                backStack = backStack,
+                entryDecorators = listOf(
+                    rememberSaveableStateHolderNavEntryDecorator(),
+                ),
+                sceneStrategy = navigationSuiteSceneStrategy,
+                entryProvider = entryProvider {
+                    entry<SignInDestination> { SignInScreen() }
+                    entry<WebsitesDestination>(
+                        metadata = NavigationSuiteSceneStrategy.tab()
+                    ) { WebsitesScreen() }
+                    entry<LinksDestination>(
+                        metadata = NavigationSuiteSceneStrategy.tab()
+                    ) { LinksScreen() }
+                    entry<PixelsDestination> { PixelsScreen() }
+                    entry<SettingsDestination> { SettingsScreen() }
+                    entry<OverviewDestination> { OverviewScreen() }
+                },
+            )
+        }
     }
 }
 
-val LocalBackStack = compositionLocalOf<NavBackStack<NavKey>> { error("No NavBackStack provided") }
+val LocalNavigator = compositionLocalOf<Navigator> { error("No Navigator provided") }

@@ -14,6 +14,7 @@ kotlin = "2.3.10"
 koin = "4.1.1"
 koin-annotations = "2.3.1"
 lifecycle = "2.9.6"
+material3 = "1.10.0-alpha05"
 navigation3 = "1.0.0-alpha06"
 sentry = "0.24.0"
 versionCode = "1"
@@ -21,7 +22,6 @@ versionName = "1.0.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
-android-library = { id = "com.android.library", version.ref = "agp" }
 android-multiplatform-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 buildConfig = "com.github.gmazzo.buildconfig:6.0.7"
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
@@ -29,10 +29,7 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 gitHooks = "eu.bambooapps.gradle.plugin.githook:1.1.1"
 compose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kover = "org.jetbrains.kotlinx.kover:0.9.7"
-ksp = "com.google.devtools.ksp:2.3.5"
 mokkery = "dev.mokkery:3.2.0"
 serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sentry = { id = "io.sentry.kotlin.multiplatform.gradle", version.ref = "sentry" }
@@ -44,6 +41,12 @@ coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", ve
 coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil" }
 coil-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil" }
 coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil" }
+compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose-plugin" }
+compose-components-uiToolingPreview = { module = "org.jetbrains.compose.components:components-ui-tooling-preview", version.ref = "compose-plugin" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose-plugin" }
+compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "material3" }
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose-plugin" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose-plugin" }
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 detekt-composeRules = "io.nlopez.compose.rules:detekt:0.5.6"
 kermit-core = { module = "co.touchlab:kermit", version.ref = "kermit" }
@@ -52,9 +55,10 @@ kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref =
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 lifecycle-runtimeCompose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
 lifecycle-viewModel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
-navigation3-runtime = { module = "org.jetbrains.androidx.navigation3:navigation3-runtime", version.ref = "navigation3" }
+lucideIcons = "com.composables:icons-lucide-cmp:2.2.1"
+material3-adaptive-navigation3 = "org.jetbrains.compose.material3.adaptive:adaptive-navigation3:1.3.0-alpha02"
+material3-adaptive-navigationSuite = { module = "org.jetbrains.compose.material3:material3-adaptive-navigation-suite", version.ref = "material3" }
 navigation3-ui = { module = "org.jetbrains.androidx.navigation3:navigation3-ui", version.ref = "navigation3" }
-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.10.0"
 koin-core = { module = "io.insert-koin:koin-compose-viewmodel-navigation", version.ref = "koin" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }

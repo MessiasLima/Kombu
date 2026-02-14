@@ -32,17 +32,18 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.ui)
-            implementation(compose.components.resources)
-            implementation(compose.components.uiToolingPreview)
+            implementation(libs.compose.foundation)
+            implementation(libs.compose.material3)
+            implementation(libs.compose.runtime)
+            implementation(libs.compose.ui)
+            implementation(libs.compose.components.resources)
+            implementation(libs.compose.components.uiToolingPreview)
             implementation(libs.lifecycle.viewModel)
             implementation(libs.lifecycle.runtimeCompose)
             implementation(libs.navigation3.ui)
-            implementation("org.jetbrains.compose.material3.adaptive:adaptive-navigation3:1.3.0-alpha02")
-            implementation("org.jetbrains.compose.material3:material3-adaptive-navigation-suite:1.10.0-alpha05")
+            implementation(libs.lucideIcons)
+            implementation(libs.material3.adaptive.navigation3)
+            implementation(libs.material3.adaptive.navigationSuite)
         }
 
         commonTest.dependencies {

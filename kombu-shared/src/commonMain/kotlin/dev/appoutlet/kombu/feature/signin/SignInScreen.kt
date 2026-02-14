@@ -9,20 +9,20 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavKey
-import dev.appoutlet.kombu.LocalBackStack
-import dev.appoutlet.kombu.feature.main.MainDestination
+import dev.appoutlet.kombu.LocalNavigator
+import dev.appoutlet.kombu.feature.websites.WebsitesDestination
 import kotlinx.serialization.Serializable
 
 @Composable
 fun SignInScreen() {
     Scaffold { paddingValues ->
+        val navigator = LocalNavigator.current
         Column(modifier = Modifier.safeDrawingPadding().padding(paddingValues)) {
-            val backStack = LocalBackStack.current
 
             Text(text = "Sign In")
 
             Button(onClick = {
-                backStack.add(MainDestination)
+                navigator.navigate(WebsitesDestination)
             }) {
                 Text("Go to Main")
             }
