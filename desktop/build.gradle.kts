@@ -9,11 +9,9 @@ plugins {
 kotlin {
     jvm()
     sourceSets {
-        jvmMain {
-            dependencies {
-                implementation(project(":kombu-shared"))
-                implementation(compose.desktop.currentOs)
-            }
+        jvmMain.dependencies {
+            implementation(project(":kombu-shared"))
+            implementation(compose.desktop.currentOs)
         }
     }
 }
@@ -24,8 +22,8 @@ compose.desktop {
 
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "dev.appoutlet.kombu"
-            packageVersion = "1.0.0"
+            packageName = "dev.appoutlet.Kombu"
+            packageVersion = libs.versions.versionName.get()
         }
     }
 }

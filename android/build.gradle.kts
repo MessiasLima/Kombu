@@ -4,18 +4,26 @@ plugins {
 }
 
 android {
-    namespace = "dev.appoutlet.kombu"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    namespace = "dev.appoutlet.kombu.android"
+
+    compileSdk {
+        version = release(libs.versions.android.compileSdk.get().toInt())
+    }
 
     defaultConfig {
         applicationId  = "dev.appoutlet.kombu"
-        versionCode = 1
-        versionName = "1.0"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
+        versionCode = libs.versions.versionCode.get().toInt()
+        versionName = libs.versions.versionName.get()
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        debug {
+            versionNameSuffix = "-debug"
+        }
+
         release {
             isMinifyEnabled = false
             proguardFiles(
