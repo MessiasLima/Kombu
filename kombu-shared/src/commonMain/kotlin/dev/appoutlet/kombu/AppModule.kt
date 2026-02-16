@@ -1,15 +1,22 @@
 package dev.appoutlet.kombu
 
-import org.koin.core.annotation.Configuration
-import org.koin.core.annotation.KoinApplication
+import dev.appoutlet.kombu.feature.signin.SignInModule
+import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
-import org.koin.meta.annotations.ExternalDefinition
 
 
-@Module
-@Configuration
+@Module(
+    includes = [
+        FeatureModule::class
+    ]
+)
+@ComponentScan("dev.appoutlet.kombu")
 class AppModule
 
-@KoinApplication
-@ExternalDefinition("dev.appoutlet.kombu.feature")
-object KombuApplication
+
+@Module(
+    includes = [
+        SignInModule::class
+    ]
+)
+class FeatureModule
