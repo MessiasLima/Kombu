@@ -34,6 +34,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(project(":core:navigation"))
                 implementation(libs.compose.foundation)
                 implementation(libs.compose.material3)
                 implementation(libs.compose.runtime)
@@ -63,10 +64,14 @@ kotlin {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
-    if (name != "kspCommonMainKotlinMetadata") {
-        dependsOn("kspCommonMainKotlinMetadata")
-    }
+// region KSP
+tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }.configureEach {
+    dependsOn("kspCommonMainKotlinMetadata")
+}
+
+ksp {
+    arg("KOIN_DEFAULT_MODULE", "false")
+    arg("KOIN_CONFIG_CHECK","false")
 }
 
 dependencies {
@@ -77,8 +82,4 @@ dependencies {
     add("kspIosSimulatorArm64", libs.koin.kspCompiler)
 }
 
-// region KSP
-ksp {
-    arg("KOIN_DEFAULT_MODULE", "false")
-    arg("KOIN_CONFIG_CHECK","false")
-}
+// endregion

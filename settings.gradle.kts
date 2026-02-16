@@ -24,4 +24,6 @@ plugins {
 
 include(":android")
 include(":desktop")
+include(":core:navigation")
 include(":kombu-shared")
+

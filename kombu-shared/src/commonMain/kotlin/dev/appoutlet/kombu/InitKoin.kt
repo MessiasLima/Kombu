@@ -2,10 +2,10 @@ package dev.appoutlet.kombu
 
 import co.touchlab.kermit.koin.KermitKoinLogger
 import dev.appoutlet.kombu.core.logging.getLogger
+import org.koin.compose.getKoin
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.ksp.generated.module
-
 
 /**
  * Initializes the Koin dependency injection framework for the application.
@@ -19,9 +19,10 @@ import org.koin.ksp.generated.module
  * @param koinApplication A lambda with a receiver of type `KoinApplication` that allows
  * additional configuration of the Koin application. Defaults to an empty implementation.
  */
-fun initKoin() {
+fun initKoin(koinApplication: KoinApplication.() -> Unit = {}) {
     startKoin {
         logger(KermitKoinLogger(getLogger("Koin")))
+        koinApplication()
         modules(AppModule().module)
     }
 }

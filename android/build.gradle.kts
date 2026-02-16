@@ -46,4 +46,5 @@ android {
 dependencies {
     implementation(project(":kombu-shared"))
     implementation(libs.activity.compose)
+    implementation(libs.koin.android)
 }

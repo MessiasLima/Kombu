@@ -10,7 +10,7 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
-import dev.appoutlet.kombu.core.navigation.AppNavigationAggregator
+import dev.appoutlet.kombu.AppNavigationAggregator
 import dev.appoutlet.kombu.core.navigation.Navigator
 import dev.appoutlet.kombu.feature.signin.SignInDestination
 import kotlinx.serialization.modules.SerializersModule
@@ -20,7 +20,6 @@ import org.koin.compose.koinInject
 
 @Composable
 fun App() {
-    initKoin()
     MaterialTheme {
         Navigation()
     }
