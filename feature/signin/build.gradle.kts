@@ -9,7 +9,7 @@ plugins {
 
 kotlin {
     android {
-        namespace = "dev.appoutlet.kombu"
+        namespace = "dev.appoutlet.kombu.feature.signin"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         androidResources {
             enable = true
@@ -36,7 +36,6 @@ kotlin {
             dependencies {
                 implementation(project(":core:logging"))
                 implementation(project(":core:navigation"))
-                implementation(project(":feature:signin"))
                 implementation(libs.compose.foundation)
                 implementation(libs.compose.material3)
                 implementation(libs.compose.runtime)

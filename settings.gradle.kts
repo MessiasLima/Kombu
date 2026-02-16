@@ -26,5 +26,6 @@ include(":android")
 include(":desktop")
 include(":core:logging")
 include(":core:navigation")
+include(":feature:signin")
 include(":kombu-shared")
 

@@ -5,7 +5,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.navigation3.runtime.NavKey
-import dev.appoutlet.kombu.LocalNavigator
+import dev.appoutlet.kombu.core.navigation.LocalNavigator
 import dev.appoutlet.kombu.feature.overview.OverviewDestination
 import kotlinx.serialization.Serializable
 

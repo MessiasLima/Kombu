@@ -3,14 +3,13 @@ package dev.appoutlet.kombu
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.compositionLocalOf
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
-import dev.appoutlet.kombu.AppNavigationAggregator
+import dev.appoutlet.kombu.core.navigation.LocalNavigator
 import dev.appoutlet.kombu.core.navigation.Navigator
 import dev.appoutlet.kombu.feature.signin.SignInDestination
 import kotlinx.serialization.modules.SerializersModule
@@ -50,5 +49,3 @@ private fun Navigation() {
         )
     }
 }
-
-val LocalNavigator = compositionLocalOf<Navigator> { error("No Navigator provided") }

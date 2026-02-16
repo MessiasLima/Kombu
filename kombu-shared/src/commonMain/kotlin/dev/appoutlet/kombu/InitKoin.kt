@@ -21,6 +21,6 @@ fun initKoin(koinApplication: KoinApplication.() -> Unit = {}) {
     startKoin {
         logger(getKoinLogger())
         koinApplication()
-        modules(AppModule().module)
+        //modules(AppModule().module)
     }
 }

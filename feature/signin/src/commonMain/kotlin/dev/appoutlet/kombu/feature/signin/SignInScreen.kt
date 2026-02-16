@@ -8,8 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import dev.appoutlet.kombu.LocalNavigator
-import dev.appoutlet.kombu.feature.main.MainDestination
+import dev.appoutlet.kombu.core.navigation.LocalNavigator
 
 @Composable
 fun SignInScreen() {
@@ -20,7 +19,7 @@ fun SignInScreen() {
             Text(text = "Sign In")
 
             Button(onClick = {
-                navigator.navigate(MainDestination)
+                //navigator.navigate(MainDestination)
             }) {
                 Text("Go to Main")
             }
