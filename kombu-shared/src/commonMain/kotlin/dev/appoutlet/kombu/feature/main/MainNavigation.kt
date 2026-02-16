@@ -2,13 +2,14 @@ package dev.appoutlet.kombu.feature.main
 
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
+import dev.appoutlet.kombu.core.navigation.AppNavigation
 import dev.appoutlet.kombu.core.navigation.Navigation
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.modules.PolymorphicModuleBuilder
-import org.koin.core.annotation.Factory
+import org.koin.core.annotation.Single
 
-@Factory
-class MainNavigation : Navigation<NavKey> {
+@Single
+class MainNavigation : AppNavigation<NavKey> {
     override fun setupRoute(scope: EntryProviderScope<NavKey>) {
         scope.entry<MainDestination> { MainScreen() }
     }
