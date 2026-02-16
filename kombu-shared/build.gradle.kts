@@ -34,6 +34,7 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
+                implementation(project(":core:logging"))
                 implementation(project(":core:navigation"))
                 implementation(libs.compose.foundation)
                 implementation(libs.compose.material3)
@@ -47,8 +48,6 @@ kotlin {
                 implementation(libs.lucideIcons)
                 implementation(libs.material3.adaptive.navigation3)
                 implementation(libs.material3.adaptive.navigationSuite)
-                implementation(libs.kermit.core)
-                implementation(libs.kermit.koin)
                 implementation(libs.koin.core)
                 implementation(libs.koin.compose)
                 implementation(libs.koin.compose.viewModel)

@@ -1,8 +1,6 @@
 package dev.appoutlet.kombu
 
-import co.touchlab.kermit.koin.KermitKoinLogger
-import dev.appoutlet.kombu.core.logging.getLogger
-import org.koin.compose.getKoin
+import dev.appoutlet.kombu.core.logging.getKoinLogger
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.ksp.generated.module
@@ -21,7 +19,7 @@ import org.koin.ksp.generated.module
  */
 fun initKoin(koinApplication: KoinApplication.() -> Unit = {}) {
     startKoin {
-        logger(KermitKoinLogger(getLogger("Koin")))
+        logger(getKoinLogger())
         koinApplication()
         modules(AppModule().module)
     }
