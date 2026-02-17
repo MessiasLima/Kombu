@@ -10,7 +10,7 @@ kotlin {
     jvm()
     sourceSets {
         jvmMain.dependencies {
-            implementation(project(":kombu-shared"))
+            implementation(project(":app:shared"))
             implementation(compose.desktop.currentOs)
         }
     }

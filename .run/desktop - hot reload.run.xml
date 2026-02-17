@@ -10,7 +10,7 @@
       </option>
       <option name="taskNames">
         <list>
-          <option value=":desktop:hotRunJvmAsync" />
+          <option value=":app:desktop:hotRunJvmAsync" />
           <option value="--auto" />
         </list>
       </option>
