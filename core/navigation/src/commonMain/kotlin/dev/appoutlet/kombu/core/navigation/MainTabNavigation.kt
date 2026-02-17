@@ -8,4 +8,5 @@ interface MainTabNavigation<T : NavKey> : Navigation<T> {
     val key: T
     val label: StringResource
     val icon: ImageVector
+    val order: Int
 }

@@ -16,6 +16,7 @@ class WebsitesNavigation : MainTabNavigation<WebsitesDestination> {
     override val key = WebsitesDestination
     override val label = Res.string.main_tab_websites
     override val icon = Lucide.Globe
+    override val order = 0
 
     override fun setupRoute(scope: EntryProviderScope<NavKey>) {
         scope.entry<WebsitesDestination> { WebsitesScreen() }

@@ -16,6 +16,7 @@ class LinksNavigation : MainTabNavigation<LinksDestination> {
     override val key = LinksDestination
     override val label = Res.string.main_tab_links
     override val icon = Lucide.Link
+    override val order = 1
 
     override fun setupRoute(scope: EntryProviderScope<NavKey>) {
         scope.entry<LinksDestination> { LinksScreen() }

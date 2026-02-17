@@ -4,4 +4,6 @@ import dev.appoutlet.kombu.core.navigation.MainTabNavigation
 import org.koin.core.annotation.Single
 
 @Single
-class MainTabNavigationAggregator(val navigationList: List<MainTabNavigation<*>>)
+class MainTabNavigationAggregator(private val navigationList: List<MainTabNavigation<*>>) {
+    val navigation = navigationList.sortedBy { it.order }
+}

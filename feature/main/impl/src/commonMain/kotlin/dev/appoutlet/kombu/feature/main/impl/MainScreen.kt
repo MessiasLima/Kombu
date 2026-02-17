@@ -21,7 +21,7 @@ fun MainScreen() {
     val config = SavedStateConfiguration {
         serializersModule = SerializersModule {
             polymorphic(NavKey::class) {
-                for (navigation in navigationAggregator.navigationList) { navigation.setupPolymorphism(this) }
+                for (navigation in navigationAggregator.navigation) { navigation.setupPolymorphism(this) }
             }
         }
     }
@@ -29,7 +29,7 @@ fun MainScreen() {
 
     NavigationSuiteScaffold(
         navigationSuiteItems = {
-            navigationAggregator.navigationList.forEachIndexed { index, item ->
+            navigationAggregator.navigation.forEachIndexed { index, item ->
                 item(
                     selected = backStack.last() == item.key,
                     onClick = { backStack.add(item.key) },
@@ -42,7 +42,7 @@ fun MainScreen() {
             NavDisplay(
                 backStack = backStack,
                 entryProvider = entryProvider {
-                    for (navigation in navigationAggregator.navigationList) { navigation.setupRoute(this) }
+                    for (navigation in navigationAggregator.navigation) { navigation.setupRoute(this) }
                 },
             )
         }
