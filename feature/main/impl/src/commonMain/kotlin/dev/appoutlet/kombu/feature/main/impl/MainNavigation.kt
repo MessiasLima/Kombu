@@ -8,7 +8,7 @@ import kotlinx.serialization.modules.PolymorphicModuleBuilder
 import org.koin.core.annotation.Single
 
 @Single
-class MainNavigation : AppNavigation<NavKey> {
+class MainNavigation : AppNavigation<MainDestination> {
     override fun setupRoute(scope: EntryProviderScope<NavKey>) {
         scope.entry<MainDestination> { MainScreen() }
     }
