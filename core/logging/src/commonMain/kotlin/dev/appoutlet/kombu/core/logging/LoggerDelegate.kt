@@ -1,3 +1,5 @@
+@file:Suppress("ForbiddenImport")
+
 package dev.appoutlet.kombu.core.logging
 
 import co.touchlab.kermit.Logger

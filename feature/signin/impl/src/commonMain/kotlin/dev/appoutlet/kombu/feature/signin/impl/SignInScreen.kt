@@ -16,7 +16,6 @@ fun SignInScreen() {
     Scaffold { paddingValues ->
         val navigator = LocalNavigator.current
         Column(modifier = Modifier.safeDrawingPadding().padding(paddingValues)) {
-
             Text(text = "Sign In")
 
             Button(onClick = {

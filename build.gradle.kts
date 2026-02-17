@@ -14,3 +14,8 @@ plugins {
     alias(libs.plugins.gitHooks)
     alias(libs.plugins.detekt)
 }
+
+// Install git hooks on project import
+tasks.named("prepareKotlinBuildScriptModel") {
+    dependsOn(":installGitHooks")
+}
