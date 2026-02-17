@@ -12,7 +12,7 @@ import kotlinx.serialization.modules.PolymorphicModuleBuilder
 import org.koin.core.annotation.Single
 
 @Single
-class SettingsNavigation : MainTabNavigation<SettingsDestination> {
+class SettingsMainTabNavigation : MainTabNavigation<SettingsDestination> {
     override val key = SettingsDestination
     override val label = Res.string.settings_tab
     override val icon = Lucide.UserCog

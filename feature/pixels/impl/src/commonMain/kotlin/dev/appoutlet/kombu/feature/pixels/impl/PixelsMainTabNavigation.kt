@@ -12,7 +12,7 @@ import kotlinx.serialization.modules.PolymorphicModuleBuilder
 import org.koin.core.annotation.Single
 
 @Single
-class PixelsNavigation : MainTabNavigation<PixelsDestination> {
+class PixelsMainTabNavigation : MainTabNavigation<PixelsDestination> {
     override val key = PixelsDestination
     override val label = Res.string.pixels_tab
     override val icon = Lucide.LayoutGrid

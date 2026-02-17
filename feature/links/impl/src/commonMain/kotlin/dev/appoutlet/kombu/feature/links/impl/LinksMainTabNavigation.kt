@@ -12,7 +12,7 @@ import kotlinx.serialization.modules.PolymorphicModuleBuilder
 import org.koin.core.annotation.Single
 
 @Single
-class LinksNavigation : MainTabNavigation<LinksDestination> {
+class LinksMainTabNavigation : MainTabNavigation<LinksDestination> {
     override val key = LinksDestination
     override val label = Res.string.main_tab_links
     override val icon = Lucide.Link
