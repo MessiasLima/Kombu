@@ -16,6 +16,8 @@ class SettingsMainTabNavigation : MainTabNavigation<SettingsDestination> {
     override val key = SettingsDestination
     override val label = Res.string.settings_tab
     override val icon = Lucide.UserCog
+
+    @Suppress("MagicNumber")
     override val order = 3
 
     override fun setupRoute(scope: EntryProviderScope<NavKey>) {
