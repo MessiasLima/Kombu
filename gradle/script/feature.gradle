@@ -1,0 +1,10 @@
+apply {
+    plugin(libs.plugins.serialization.get().pluginId)
+}
+
+apply from: "$rootDir/gradle/script/core.gradle"
+
+dependencies {
+    commonMainApi(project(":core:navigation"))
+    commonMainApi(libs.navigation3.ui)
+}
