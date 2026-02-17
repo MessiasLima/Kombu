@@ -1,0 +1,105 @@
+/*
+ * Shared build logic for feature implementation modules.
+ *
+ * This script extends feature.gradle and adds:
+ * - Compose Multiplatform configuration
+ * - Koin dependency injection setup with KSP
+ * - Additional feature module dependencies (Lifecycle, Material3, etc.)
+ *
+ * Usage in build.gradle.kts:
+ *
+ * plugins {
+ *     alias(libs.plugins.kotlin.multiplatform)
+ *     alias(libs.plugins.android.multiplatform.library)
+ *     alias(libs.plugins.compose)
+ *     alias(libs.plugins.compose.compiler)
+ *     alias(libs.plugins.serialization)
+ *     alias(libs.plugins.ksp)
+ * }
+ *
+ * ext {
+ *     set("namespace", "dev.appoutlet.kombu.feature.myfeature.impl")
+ *     set("apiModule", ":feature:myfeature")  // Optional: API module to expose
+ * }
+ *
+ * apply(from = "$rootDir/gradle/script/feature-impl.gradle")
+ *
+ * // Add additional dependencies if needed:
+ * dependencies {
+ *     commonMainImplementation(...)
+ * }
+ */
+
+apply from: "$rootDir/gradle/script/feature.gradle"
+
+def apiModulePath = ext.has("apiModule") ? ext.get("apiModule") as String : null
+
+kotlin {
+    android {
+        androidResources {
+            enable = true
+        }
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                // API module dependency (if specified)
+                if (apiModulePath != null) {
+                    api(project(apiModulePath))
+                }
+
+                // Core dependencies
+                implementation(project(":core:logging"))
+
+                // Compose dependencies
+                implementation(libs.compose.foundation)
+                implementation(libs.compose.material3)
+                implementation(libs.compose.runtime)
+                implementation(libs.compose.ui)
+                implementation(libs.compose.components.resources)
+                implementation(libs.compose.components.uiToolingPreview)
+
+                // Lifecycle dependencies
+                implementation(libs.lifecycle.viewModel)
+                implementation(libs.lifecycle.runtimeCompose)
+
+                // UI dependencies
+                implementation(libs.lucideIcons)
+                implementation(libs.material3.adaptive.navigation3)
+                implementation(libs.material3.adaptive.navigationSuite)
+
+                // Koin dependencies
+                implementation(libs.koin.core)
+                implementation(libs.koin.compose)
+                implementation(libs.koin.compose.viewModel)
+                implementation(libs.koin.annotations)
+            }
+
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+        }
+    }
+}
+
+// region KSP
+tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }.configureEach {
+    dependsOn("kspCommonMainKotlinMetadata")
+}
+
+ksp {
+    arg("KOIN_DEFAULT_MODULE", "false")
+    arg("KOIN_CONFIG_CHECK", "false")
+}
+
+dependencies {
+    // Per-platform KSP configuration required
+    add("kspCommonMainMetadata", libs.koin.kspCompiler)
+    add("kspAndroid", libs.koin.kspCompiler)
+    add("kspIosArm64", libs.koin.kspCompiler)
+    add("kspIosSimulatorArm64", libs.koin.kspCompiler)
+}
+// endregion
+
+
+
+
