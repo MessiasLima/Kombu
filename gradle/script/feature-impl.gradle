@@ -10,22 +10,19 @@
  *
  * plugins {
  *     alias(libs.plugins.kotlin.multiplatform)
- *     alias(libs.plugins.android.multiplatform.library)
  *     alias(libs.plugins.compose)
  *     alias(libs.plugins.compose.compiler)
- *     alias(libs.plugins.serialization)
- *     alias(libs.plugins.ksp)
  * }
  *
  * ext {
  *     set("namespace", "dev.appoutlet.kombu.feature.myfeature.impl")
- *     set("apiModule", ":feature:myfeature")  // Optional: API module to expose
  * }
  *
  * apply(from = "$rootDir/gradle/script/feature-impl.gradle")
  *
- * // Add additional dependencies if needed:
  * dependencies {
+ *     commonMainApi(project(":feature:myfeature"))  // API module dependency
+ *     // Add additional dependencies if needed:
  *     commonMainImplementation(...)
  * }
  */
@@ -35,8 +32,6 @@ apply from: "$rootDir/gradle/script/feature.gradle"
 apply {
     plugin(libs.plugins.ksp.get().pluginId)
 }
-
-def apiModulePath = ext.has("apiModule") ? ext.get("apiModule") as String : null
 
 kotlin {
     android {
@@ -48,11 +43,6 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                // API module dependency (if specified)
-                if (apiModulePath != null) {
-                    api(project(apiModulePath))
-                }
-
                 // Core dependencies
                 implementation(project(":core:logging"))
 
