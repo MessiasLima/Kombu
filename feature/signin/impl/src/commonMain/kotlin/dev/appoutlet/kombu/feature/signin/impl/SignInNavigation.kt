@@ -3,7 +3,6 @@ package dev.appoutlet.kombu.feature.signin.impl
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import dev.appoutlet.kombu.core.navigation.AppNavigation
-import dev.appoutlet.kombu.feature.main.MainDestination
 import dev.appoutlet.kombu.feature.signin.SignInDestination
 import kotlinx.serialization.modules.PolymorphicModuleBuilder
 import org.koin.core.annotation.Single
