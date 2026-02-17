@@ -7,71 +7,10 @@ plugins {
     alias(libs.plugins.ksp)
 }
 
-kotlin {
-    android {
-        namespace = "dev.appoutlet.kombu.feature.signin.impl"
-        compileSdk = libs.versions.android.compileSdk.get().toInt()
-        androidResources {
-            enable = true
-        }
-        withHostTest {
-            isIncludeAndroidResources = true
-        }
-    }
-
-    iosArm64()
-    iosSimulatorArm64()
-    jvm()
-
-    sourceSets {
-        commonMain {
-            dependencies {
-                api(project(":feature:signin"))
-                implementation(project(":core:logging"))
-                implementation(project(":core:navigation"))
-                implementation(libs.compose.foundation)
-                implementation(libs.compose.material3)
-                implementation(libs.compose.runtime)
-                implementation(libs.compose.ui)
-                implementation(libs.compose.components.resources)
-                implementation(libs.compose.components.uiToolingPreview)
-                implementation(libs.lifecycle.viewModel)
-                implementation(libs.lifecycle.runtimeCompose)
-                implementation(libs.navigation3.ui)
-                implementation(libs.lucideIcons)
-                implementation(libs.material3.adaptive.navigation3)
-                implementation(libs.material3.adaptive.navigationSuite)
-                implementation(libs.koin.core)
-                implementation(libs.koin.compose)
-                implementation(libs.koin.compose.viewModel)
-                implementation(libs.koin.annotations)
-            }
-
-            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
-        }
-
-        commonTest.dependencies {
-            implementation(libs.kotlin.test)
-        }
-    }
+ext {
+    set("namespace", "dev.appoutlet.kombu.feature.signin.impl")
+    set("apiModule", ":feature:signin")
 }
 
-// region KSP
-tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }.configureEach {
-    dependsOn("kspCommonMainKotlinMetadata")
-}
+apply(from = "$rootDir/gradle/script/feature-impl.gradle")
 
-ksp {
-    arg("KOIN_DEFAULT_MODULE", "false")
-    arg("KOIN_CONFIG_CHECK","false")
-}
-
-dependencies {
-    // Per-platform KSP configuration required
-    add("kspCommonMainMetadata", libs.koin.kspCompiler)
-    add("kspAndroid", libs.koin.kspCompiler)
-    add("kspIosArm64", libs.koin.kspCompiler)
-    add("kspIosSimulatorArm64", libs.koin.kspCompiler)
-}
-
-// endregion
