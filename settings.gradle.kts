@@ -27,5 +27,6 @@ include(":desktop")
 include(":core:logging")
 include(":core:navigation")
 include(":feature:signin")
+include(":feature:signin:impl")
 include(":kombu-shared")
 

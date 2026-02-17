@@ -1,17 +1,2 @@
-apply {
-    plugin(libs.plugins.kotlin.multiplatform.get().pluginId)
-    plugin(libs.plugins.android.multiplatform.library.get().pluginId)
-}
-
-def androidNamespace  = ext.has("namespace") ? ext.get("namespace") as String : null
-
-kotlin {
-    android {
-        namespace = androidNamespace
-        compileSdk = libs.versions.android.compileSdk.get().toInteger()
-    }
-
-    iosArm64()
-    iosSimulatorArm64()
-    jvm()
-}
+apply from: "$rootDir/gradle/script/setup/kmp.gradle"
+apply from: "$rootDir/gradle/script/setup/detekt.gradle"

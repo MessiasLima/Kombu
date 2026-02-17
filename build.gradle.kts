@@ -12,4 +12,5 @@ plugins {
     alias(libs.plugins.serialization) apply false
 
     alias(libs.plugins.gitHooks)
+    alias(libs.plugins.detekt)
 }

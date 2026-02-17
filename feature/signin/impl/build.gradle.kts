@@ -9,7 +9,7 @@ plugins {
 
 kotlin {
     android {
-        namespace = "dev.appoutlet.kombu"
+        namespace = "dev.appoutlet.kombu.feature.signin.impl"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         androidResources {
             enable = true
@@ -19,24 +19,16 @@ kotlin {
         }
     }
 
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64()
-    ).forEach { iosTarget ->
-        iosTarget.binaries.framework {
-            baseName = "KombuShared"
-            isStatic = true
-        }
-    }
-
+    iosArm64()
+    iosSimulatorArm64()
     jvm()
 
     sourceSets {
         commonMain {
             dependencies {
+                api(project(":feature:signin"))
                 implementation(project(":core:logging"))
                 implementation(project(":core:navigation"))
-                implementation(project(":feature:signin:impl"))
                 implementation(libs.compose.foundation)
                 implementation(libs.compose.material3)
                 implementation(libs.compose.runtime)

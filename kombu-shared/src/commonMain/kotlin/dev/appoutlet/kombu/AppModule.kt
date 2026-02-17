@@ -1,6 +1,6 @@
 package dev.appoutlet.kombu
 
-import dev.appoutlet.kombu.feature.signin.SignInModule
+import dev.appoutlet.kombu.feature.signin.impl.SignInModule
 import org.koin.core.annotation.ComponentScan
 import org.koin.core.annotation.Module
 

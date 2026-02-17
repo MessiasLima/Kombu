@@ -1,4 +1,4 @@
-package dev.appoutlet.kombu.feature.signin
+package dev.appoutlet.kombu.feature.signin.impl
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
