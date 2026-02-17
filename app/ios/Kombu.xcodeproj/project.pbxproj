@@ -7,12 +7,25 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		9C2EC712C77722EA02885514 /* .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C2EC712C77722EA02885514 /* Kombu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kombu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C9D4F62F2F44E93400E093CD /* Exceptions for "Kombu" folder in "Kombu" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = AAAAEA5448F88BE81B0F66DE /* Kombu */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		21B77910D038B9312DE9B74B /* Kombu */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C9D4F62F2F44E93400E093CD /* Exceptions for "Kombu" folder in "Kombu" target */,
+			);
 			path = Kombu;
 			sourceTree = "<group>";
 		};
@@ -46,7 +59,7 @@
 		6EDB5E84662F02BA28A53F2F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9C2EC712C77722EA02885514 /* .app */,
+				9C2EC712C77722EA02885514 /* Kombu.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,7 +87,7 @@
 			packageProductDependencies = (
 			);
 			productName = iosApp;
-			productReference = 9C2EC712C77722EA02885514 /* .app */;
+			productReference = 9C2EC712C77722EA02885514 /* Kombu.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -139,7 +152,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/..\"\n./gradlew :kombu-shared:embedAndSignAppleFrameworkForXcode\n";
+			shellScript = "if [ \"YES\" = \"$OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED\" ]; then\n  echo \"Skipping Gradle build task invocation due to OVERRIDE_KOTLIN_BUILD_IDE_SUPPORTED environment variable set to \\\"YES\\\"\"\n  exit 0\nfi\ncd \"$SRCROOT/../..\"\n./gradlew :app:shared:embedAndSignAppleFrameworkForXcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

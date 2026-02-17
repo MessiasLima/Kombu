@@ -25,14 +25,14 @@ Impl → Other feature APIs only
 App → Feature Impl modules
 Per-module resources in composeResources/
 Alphabetical ordering in all lists (dependencies, includes, imports)
-Register new modules in: settings.gradle.kts, kombu-shared/build.gradle.kts, AppModule.kt
+Register new modules in: settings.gradle.kts, app/shared/build.gradle.kts, AppModule.kt
 ```
 
 ## Architecture
 
 ```mermaid
 graph TD
-    A[kombu-shared] --> B[feature:*:impl]
+    A[app:shared] --> B[feature:*:impl]
     B --> C[feature:*]
     C --> D[core:navigation]
     B --> E[core:logging]
@@ -43,7 +43,7 @@ graph TD
 | Feature API | `<Name>Destination` only | `:feature:signin` |
 | Feature Impl | Screen, Navigation, Module, resources | `:feature:signin:impl` |
 | Core | Shared utilities, no feature deps | `:core:navigation` |
-| App | Aggregates all feature impl via Koin | `kombu-shared` |
+| App | Aggregates all feature impl via Koin | `:app:shared` |
 
 ## Templates
 
@@ -156,8 +156,8 @@ class <Name>ViewModel : ViewModel() {
 | File | Add (alphabetically) |
 |------|-----|
 | `settings.gradle.kts` | `include(":feature:<name>")` and `include(":feature:<name>:impl")` |
-| `kombu-shared/build.gradle.kts` | `implementation(project(":feature:<name>:impl"))` |
-| `kombu-shared/.../AppModule.kt` | `<Name>Module::class` in `FeatureModule` includes |
+| `app/shared/build.gradle.kts` | `implementation(project(":feature:<name>:impl"))` |
+| `app/shared/.../AppModule.kt` | `<Name>Module::class` in `FeatureModule` includes |
 
 ## Conventions
 
@@ -190,8 +190,8 @@ actual fun platformFunction() = "JVM"
 
 ```bash
 ./gradlew build                          # Build all
-./gradlew :android:assembleDebug         # Android
-./gradlew :desktop:build                 # Desktop
+./gradlew :app:android:assembleDebug     # Android
+./gradlew :app:desktop:build             # Desktop
 ./gradlew :feature:<name>:impl:build     # Feature
 ./gradlew detekt                         # Lint
 ```

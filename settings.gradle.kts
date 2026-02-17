@@ -22,10 +22,11 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "1.0.0"
 }
 
-include(":android")
+include(":app:android")
+include(":app:desktop")
+include(":app:shared")
 include(":core:logging")
 include(":core:navigation")
-include(":desktop")
 include(":feature:links")
 include(":feature:links:impl")
 include(":feature:main")
@@ -40,5 +41,3 @@ include(":feature:signin")
 include(":feature:signin:impl")
 include(":feature:websites")
 include(":feature:websites:impl")
-include(":kombu-shared")
-
