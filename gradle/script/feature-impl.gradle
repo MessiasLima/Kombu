@@ -32,6 +32,10 @@
 
 apply from: "$rootDir/gradle/script/feature.gradle"
 
+apply {
+    plugin(libs.plugins.ksp.get().pluginId)
+}
+
 def apiModulePath = ext.has("apiModule") ? ext.get("apiModule") as String : null
 
 kotlin {

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<resources>
-    <string name="app_name">Kombu</string>
-    <!-- Main -->
-    <string name="main_tab_websites">Websites</string>
-    <string name="main_tab_links">Links</string>
-    <string name="main_tab_pixels">Pixels</string>
-    <string name="main_tab_settings">Settings</string>
-</resources>

@@ -23,10 +23,22 @@ plugins {
 }
 
 include(":android")
-include(":desktop")
 include(":core:logging")
 include(":core:navigation")
+include(":desktop")
+include(":feature:links")
+include(":feature:links:impl")
+include(":feature:main")
+include(":feature:main:impl")
+include(":feature:overview")
+include(":feature:overview:impl")
+include(":feature:pixels")
+include(":feature:pixels:impl")
+include(":feature:settings")
+include(":feature:settings:impl")
 include(":feature:signin")
 include(":feature:signin:impl")
+include(":feature:websites")
+include(":feature:websites:impl")
 include(":kombu-shared")
 
