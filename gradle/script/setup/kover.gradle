@@ -1,0 +1,35 @@
+apply {
+    plugin(libs.plugins.kover.get().pluginId)
+}
+
+def minimumCoverage = ext.has("minimumCoverage") ? ext.get("minimumCoverage") as Integer : 0
+
+kover {
+    reports {
+        filters {
+            excludes {
+                classes(
+                    // Non-testable application setup
+                    "Kombu",
+                    "MainActivity",
+                    "BuildKonfig",
+                    "KombuApplication",
+
+                    // Dependency Injection
+                    "*Module",
+
+                    // Misc
+                    "*ComposableSingletons*",
+                    "kombu.composeapp.generated.resources.*",
+                    "org.koin.ksp.generated.*",
+                )
+            }
+        }
+
+        verify {
+            rule {
+                minBound(minimumCoverage)
+            }
+        }
+    }
+}

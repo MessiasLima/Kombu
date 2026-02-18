@@ -1,2 +1,7 @@
 apply from: "$rootDir/gradle/script/setup/kmp.gradle"
 apply from: "$rootDir/gradle/script/setup/detekt.gradle"
+apply from: "$rootDir/gradle/script/setup/kover.gradle"
+
+apply {
+    plugin(libs.plugins.mokkery.get().pluginId)
+}
