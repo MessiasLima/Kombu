@@ -17,7 +17,7 @@ fun <ViewData, SiteEffect : Any> Screen(
     viewModelProvider: @Composable () -> ContainerHost<SiteEffect>,
     modifier: Modifier = Modifier,
     error: @Composable (Throwable?) -> Unit = { DefaultErrorIndicator(it?.message) },
-    loading: @Composable (String?) -> Unit = {},
+    loading: @Composable (String?) -> Unit = { DefaultLoadingIndicator(it) },
     idle: @Composable () -> Unit = {},
     onAction: suspend (SiteEffect) -> Unit = {},
     content: @Composable (ViewData) -> Unit,
@@ -52,4 +52,11 @@ private fun DefaultErrorIndicator(
         modifier = Modifier.fillMaxSize(),
         stackTrace = errorMessage,
     )
+}
+
+@Composable
+private fun DefaultLoadingIndicator(
+    message: String? = null
+) {
+    LoadingIndicator(modifier = Modifier.fillMaxSize(), message = message)
 }
