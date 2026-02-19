@@ -6,21 +6,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import dev.appoutlet.kombu.core.mvi.Action
 import dev.appoutlet.kombu.core.mvi.ContainerHost
 import dev.appoutlet.kombu.core.mvi.MviState
+import dev.appoutlet.kombu.core.mvi.ViewData
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Suppress("UNCHECKED_CAST")
 @Composable
-fun <ViewData, SiteEffect : Any> Screen(
+fun <ScreenViewData : ViewData, SiteEffect : Action> Screen(
     viewModelProvider: @Composable () -> ContainerHost<SiteEffect>,
     modifier: Modifier = Modifier,
     error: @Composable (Throwable?) -> Unit = { DefaultErrorIndicator(it?.message) },
     loading: @Composable (String?) -> Unit = { DefaultLoadingIndicator(it) },
     idle: @Composable () -> Unit = {},
     onAction: suspend (SiteEffect) -> Unit = {},
-    content: @Composable (ViewData) -> Unit,
+    content: @Composable (ScreenViewData) -> Unit,
 ) {
     val viewModel = viewModelProvider()
     val state by viewModel.collectAsState()
@@ -34,7 +36,7 @@ fun <ViewData, SiteEffect : Any> Screen(
 
             is MviState.Success<*> -> {
                 val viewData = remember(state) {
-                    state.data as? ViewData ?: error("View data type mismatch")
+                    state.data as? ScreenViewData ?: error("View data type mismatch")
                 }
                 content(viewData)
             }
