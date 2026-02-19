@@ -13,7 +13,7 @@ class SignInViewModel : ViewModel(), ContainerHost<SignInAction> {
     override val container = container<SignInAction>()
 
     init {
-        intent { reduce { MviState.Success(SignInViewData("", ""))} }
+        intent { reduce { MviState.Error(Throwable("Sample")) } }
     }
 }
 
