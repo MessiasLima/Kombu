@@ -1,0 +1,9 @@
+<resources>
+    <string name="sign_in_title">Kombu</string>
+    <string name="sign_in_subtitle">Sign In</string>
+    <string name="sign_in_username">Username</string>
+    <string name="sign_in_username_placeholder">Email address</string>
+    <string name="sign_in_password">Password</string>
+    <string name="sign_in_password_placeholder">Umami password</string>
+    <string name="sign_in_button">Sign In</string>
+</resources>

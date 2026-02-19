@@ -38,6 +38,7 @@ kotlin {
                 implementation(project(":core:logging"))
                 implementation(project(":core:navigation"))
                 implementation(project(":core:ui"))
+                implementation(project(":data:umami"))
                 implementation(project(":feature:links:impl"))
                 implementation(project(":feature:main:impl"))
                 implementation(project(":feature:overview:impl"))

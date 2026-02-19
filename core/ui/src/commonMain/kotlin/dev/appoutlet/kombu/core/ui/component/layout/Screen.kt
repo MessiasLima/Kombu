@@ -16,7 +16,7 @@ import org.orbitmvi.orbit.compose.collectSideEffect
 @Suppress("UNCHECKED_CAST")
 @Composable
 fun <ScreenViewData : ViewData, SiteEffect : Action> Screen(
-    viewModelProvider: @Composable () -> ContainerHost<SiteEffect>,
+    viewModelProvider: @Composable () -> ContainerHost<SiteEffect, *>,
     modifier: Modifier = Modifier,
     error: @Composable (Throwable?) -> Unit = { DefaultErrorIndicator(it?.message) },
     loading: @Composable (String?) -> Unit = { DefaultLoadingIndicator(it) },

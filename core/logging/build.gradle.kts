@@ -9,7 +9,7 @@ ext {
 apply(from = "$rootDir/gradle/script/core.gradle")
 
 dependencies {
-    commonMainImplementation(libs.kermit.core)
+    commonMainApi(libs.kermit.core)
     commonMainImplementation(libs.kermit.koin)
     commonMainImplementation(libs.koin.core)
 }

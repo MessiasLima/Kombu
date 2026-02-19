@@ -2,7 +2,7 @@
 .gradle
 **/build/
 xcuserdata
-!src/**/build/
+!data/umami/src/**/build/
 local.properties
 .idea
 !.idea/fileTemplates/

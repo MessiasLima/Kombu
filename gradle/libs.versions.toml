@@ -20,6 +20,7 @@ orbit = "10.0.0"
 sentry = "0.24.0"
 versionCode = "1"
 versionName = "1.0.0"
+umami = "0.4.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -74,4 +75,5 @@ koin-test = { module = "io.insert-koin:koin-test", version.ref = "koin" }
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koin-annotations" }
 koin-kspCompiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koin-annotations" }
 sentry = { module = "io.sentry:sentry-kotlin-multiplatform", version.ref = "sentry" }
-umami = "dev.appoutlet:umami:0.4.0"
+umami = { module = "dev.appoutlet:umami", version.ref = "umami" }
+umami-api = { module = "dev.appoutlet:umami-api", version.ref = "umami" }

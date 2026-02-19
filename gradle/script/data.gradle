@@ -1,0 +1,37 @@
+apply from: "$rootDir/gradle/script/core.gradle"
+
+apply {
+    plugin(libs.plugins.ksp.get().pluginId)
+}
+
+kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                // Koin dependencies
+                implementation(libs.koin.core)
+                implementation(libs.koin.annotations)
+            }
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
+        }
+    }
+}
+
+// region KSP
+tasks.matching { it.name.startsWith("ksp") && it.name != "kspCommonMainKotlinMetadata" }.configureEach {
+    dependsOn("kspCommonMainKotlinMetadata")
+}
+
+ksp {
+    arg("KOIN_DEFAULT_MODULE", "false")
+    arg("KOIN_CONFIG_CHECK", "true")
+}
+
+dependencies {
+    // Per-platform KSP configuration required
+    add("kspCommonMainMetadata", libs.koin.kspCompiler)
+    add("kspAndroid", libs.koin.kspCompiler)
+    add("kspIosArm64", libs.koin.kspCompiler)
+    add("kspIosSimulatorArm64", libs.koin.kspCompiler)
+}
+// endregion
