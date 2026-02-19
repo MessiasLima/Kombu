@@ -45,6 +45,8 @@ kotlin {
             dependencies {
                 // Core dependencies
                 implementation(project(":core:logging"))
+                implementation(project(":core:mvi"))
+                implementation(project(":core:ui"))
 
                 // Compose dependencies
                 implementation(libs.compose.foundation)

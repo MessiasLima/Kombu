@@ -12,4 +12,5 @@ apply(from = "$rootDir/gradle/script/feature-impl.gradle")
 
 dependencies {
     commonMainApi(project(":feature:pixels"))
+
 }
