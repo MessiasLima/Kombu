@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		C9D4F62F2F44E93400E093CD /* Exceptions for "Kombu" folder in "Kombu" target */ = {
+		C9D4F62F2F44E93400E093CD /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -24,7 +24,7 @@
 		21B77910D038B9312DE9B74B /* Kombu */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				C9D4F62F2F44E93400E093CD /* Exceptions for "Kombu" folder in "Kombu" target */,
+				C9D4F62F2F44E93400E093CD /* PBXFileSystemSynchronizedBuildFileExceptionSet */,
 			);
 			path = Kombu;
 			sourceTree = "<group>";
@@ -202,6 +202,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Kombu/Preview Content\"";
+				DEVELOPMENT_TEAM = "${TEAM_ID}";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Kombu/Info.plist;

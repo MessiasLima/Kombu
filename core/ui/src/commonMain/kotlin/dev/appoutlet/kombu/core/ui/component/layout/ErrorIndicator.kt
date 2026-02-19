@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -26,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.composables.icons.lucide.CircleX
-import com.composables.icons.lucide.Cross
 import com.composables.icons.lucide.Lucide
 import dev.appoutlet.kombu.core.ui.modifier.widthInNarrow
 import kombu.core.ui.generated.resources.Res
@@ -71,9 +69,7 @@ fun ErrorIndicator(
 
             onTryAgain?.let {
                 Spacer(Modifier.size(16.dp))
-                Button(onClick = onTryAgain) {
-                    Text(text = tryAgainText)
-                }
+                Button(onClick = onTryAgain) { Text(text = tryAgainText) }
             }
 
             stackTrace?.let {

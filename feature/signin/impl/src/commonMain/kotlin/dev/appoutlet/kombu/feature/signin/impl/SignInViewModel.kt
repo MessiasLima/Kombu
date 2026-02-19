@@ -13,7 +13,8 @@ import kotlinx.coroutines.launch
 import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
-class SignInViewModel(private val umamiAuthRepository: UmamiAuthRepository) : ViewModel(),
+class SignInViewModel(private val umamiAuthRepository: UmamiAuthRepository) :
+    ViewModel(),
     ContainerHost<SignInAction, SignInEvent> {
     val log by logger()
 
@@ -31,6 +32,7 @@ class SignInViewModel(private val umamiAuthRepository: UmamiAuthRepository) : Vi
         intent {
             reduce { MviState.Loading() }
             val user = umamiAuthRepository.login(username, password)
+            log.i { user.toString() }
             reduce { MviState.Success(SignInViewData) }
         }
     }

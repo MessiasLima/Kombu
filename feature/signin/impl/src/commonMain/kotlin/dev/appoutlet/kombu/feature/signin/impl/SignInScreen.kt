@@ -5,7 +5,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,15 +13,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.Card
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SegmentedButton
-import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -56,10 +52,10 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun SignInScreen() = Screen<SignInViewData, SignInAction>(
+fun SignInScreen() = Screen<SignInViewData, SignInAction, SignInEvent>(
     viewModelProvider = { koinViewModel<SignInViewModel>() },
     onAction = ::onAction
-) {
+) { _, onEvent ->
     Scaffold { paddingValues ->
         Box(
             modifier = Modifier.fillMaxSize().padding(paddingValues),
@@ -72,7 +68,7 @@ fun SignInScreen() = Screen<SignInViewData, SignInAction>(
                 Icon(modifier = Modifier.size(64.dp), imageVector = Lucide.ChartLine, contentDescription = null)
                 Text(text = stringResource(Res.string.sign_in_title), style = MaterialTheme.typography.displayMedium)
                 ElevatedCard(modifier = Modifier.widthInNarrow().padding(vertical = 16.dp)) {
-                    SignInForm()
+                    SignInForm(onEvent)
                 }
             }
         }
@@ -80,7 +76,7 @@ fun SignInScreen() = Screen<SignInViewData, SignInAction>(
 }
 
 @Composable
-private fun SignInForm() {
+private fun SignInForm(onEvent: (SignInEvent) -> Unit) {
     Column(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
         var username by rememberSaveable { mutableStateOf("") }
         var password by rememberSaveable { mutableStateOf("") }
@@ -92,7 +88,7 @@ private fun SignInForm() {
 
         Button(
             modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 24.dp),
-            onClick = {},
+            onClick = { onEvent(SignInEvent.OnSubmit(username, password)) },
         ) {
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Icon(modifier = Modifier.size(24.dp), imageVector = Lucide.LogIn, contentDescription = null)
