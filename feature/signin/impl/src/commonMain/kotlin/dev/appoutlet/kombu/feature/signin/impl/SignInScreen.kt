@@ -38,8 +38,10 @@ import com.composables.icons.lucide.LogIn
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.User
 import com.composables.icons.lucide.X
+import dev.appoutlet.kombu.core.navigation.Navigator
 import dev.appoutlet.kombu.core.ui.component.layout.Screen
 import dev.appoutlet.kombu.core.ui.modifier.widthInNarrow
+import dev.appoutlet.kombu.feature.main.MainDestination
 import kombu.feature.signin.impl.generated.resources.Res
 import kombu.feature.signin.impl.generated.resources.sign_in_button
 import kombu.feature.signin.impl.generated.resources.sign_in_password
@@ -169,10 +171,10 @@ private fun UsernameField(username: String, onUsernameChange: (String) -> Unit) 
     )
 }
 
-private suspend fun onAction(action: SignInAction) {
+private suspend fun onAction(action: SignInAction, navigator: Navigator) {
     when (action) {
         SignInAction.NavigateToHome -> {
-            // Handle navigation to home screen
+            navigator.navigate(MainDestination)
         }
     }
 }

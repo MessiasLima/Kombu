@@ -21,6 +21,7 @@ kotlin {
 
 dependencies {
     commonMainImplementation(project(":core:mvi"))
+    commonMainImplementation(project(":core:navigation"))
 
     // Compose
     commonMainImplementation(libs.compose.foundation)

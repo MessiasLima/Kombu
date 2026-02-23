@@ -10,6 +10,8 @@ import dev.appoutlet.kombu.core.mvi.Action
 import dev.appoutlet.kombu.core.mvi.ContainerHost
 import dev.appoutlet.kombu.core.mvi.MviState
 import dev.appoutlet.kombu.core.mvi.ViewData
+import dev.appoutlet.kombu.core.navigation.LocalNavigator
+import dev.appoutlet.kombu.core.navigation.Navigator
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
@@ -22,12 +24,15 @@ fun <ScreenViewData : ViewData, SiteEffect : Action, Event> Screen(
     error: @Composable (Throwable?) -> Unit = { DefaultErrorIndicator(it?.message, onTryAgain) },
     loading: @Composable (String?) -> Unit = { DefaultLoadingIndicator(it) },
     idle: @Composable () -> Unit = {},
-    onAction: suspend (SiteEffect) -> Unit = {},
+    onAction: suspend (SiteEffect, Navigator) -> Unit = { _, _ -> },
     content: @Composable (viewData: ScreenViewData, onEvent: (Event) -> Unit) -> Unit,
 ) {
+    val navigator = LocalNavigator.current
     val viewModel = viewModelProvider()
     val state by viewModel.collectAsState()
-    viewModel.collectSideEffect(sideEffect = onAction)
+    viewModel.collectSideEffect(sideEffect = {
+        onAction(it, navigator)
+    })
 
     AnimatedContent(modifier = modifier, targetState = state) { state ->
         when (state) {
