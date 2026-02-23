@@ -1,6 +1,5 @@
 package dev.appoutlet.kombu
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
@@ -11,13 +10,13 @@ import androidx.navigation3.ui.NavDisplay
 import dev.appoutlet.kombu.core.navigation.LocalNavigator
 import dev.appoutlet.kombu.core.navigation.Navigator
 import dev.appoutlet.kombu.core.navigation.getSavedStateConfiguration
+import dev.appoutlet.kombu.core.ui.theme.KombuTheme
 import dev.appoutlet.kombu.feature.signin.SignInDestination
 import org.koin.compose.koinInject
 
-
 @Composable
 fun App() {
-    MaterialTheme {
+    KombuTheme {
         Navigation()
     }
 }

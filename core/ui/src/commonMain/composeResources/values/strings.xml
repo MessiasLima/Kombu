@@ -1,0 +1,7 @@
+<resources>
+    <string name="error_default_title">Something went wrong</string>
+    <string name="error_default_message">An unexpected error occurred. Contact support if the problem persists</string>
+    <string name="error_default_try_again">Try again</string>
+    <string name="error_show_details">Show details</string>
+    <string name="error_hide_details">Hide details</string>
+</resources>

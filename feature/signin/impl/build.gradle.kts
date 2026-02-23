@@ -12,5 +12,8 @@ apply(from = "$rootDir/gradle/script/feature-impl.gradle")
 
 dependencies {
     commonMainApi(project(":feature:signin"))
+
+    commonMainImplementation(project(":data:umami"))
     commonMainImplementation(project(":feature:main"))
+
 }
