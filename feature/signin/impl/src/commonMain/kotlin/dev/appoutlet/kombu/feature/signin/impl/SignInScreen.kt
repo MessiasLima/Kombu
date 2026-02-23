@@ -52,23 +52,30 @@ import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
-fun SignInScreen() = Screen<SignInViewData, SignInAction, SignInEvent>(
-    viewModelProvider = { koinViewModel<SignInViewModel>() },
-    onAction = ::onAction
-) { _, onEvent ->
-    Scaffold { paddingValues ->
-        Box(
-            modifier = Modifier.fillMaxSize().padding(paddingValues),
-            contentAlignment = Alignment.Center
-        ) {
-            Column(
-                modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+fun SignInScreen() {
+    val viewModel = koinViewModel<SignInViewModel>()
+    Screen<SignInViewData, SignInAction, SignInEvent>(
+        viewModelProvider = { viewModel },
+        onAction = ::onAction,
+        onTryAgain = viewModel::onLoad
+    ) { _, onEvent ->
+        Scaffold { paddingValues ->
+            Box(
+                modifier = Modifier.fillMaxSize().padding(paddingValues),
+                contentAlignment = Alignment.Center
             ) {
-                Icon(modifier = Modifier.size(64.dp), imageVector = Lucide.ChartLine, contentDescription = null)
-                Text(text = stringResource(Res.string.sign_in_title), style = MaterialTheme.typography.displayMedium)
-                ElevatedCard(modifier = Modifier.widthInNarrow().padding(vertical = 16.dp)) {
-                    SignInForm(onEvent)
+                Column(
+                    modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Icon(modifier = Modifier.size(64.dp), imageVector = Lucide.ChartLine, contentDescription = null)
+                    Text(
+                        text = stringResource(Res.string.sign_in_title),
+                        style = MaterialTheme.typography.displayMedium
+                    )
+                    ElevatedCard(modifier = Modifier.widthInNarrow().padding(vertical = 16.dp)) {
+                        SignInForm(onEvent)
+                    }
                 }
             }
         }

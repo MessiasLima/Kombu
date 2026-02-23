@@ -35,15 +35,13 @@ import kombu.core.ui.generated.resources.error_hide_details
 import kombu.core.ui.generated.resources.error_show_details
 import org.jetbrains.compose.resources.stringResource
 
-// fixme: retry action
-
 @Composable
 fun ErrorIndicator(
     modifier: Modifier = Modifier,
     title: String? = stringResource(Res.string.error_default_title),
     message: String? = stringResource(Res.string.error_default_message),
     stackTrace: String? = null,
-    onTryAgain: (() -> Unit)? = {},
+    onTryAgain: (() -> Unit)? = null,
     tryAgainText: String = stringResource(Res.string.error_default_try_again),
 ) {
     Box(modifier = modifier, contentAlignment = Alignment.Center) {

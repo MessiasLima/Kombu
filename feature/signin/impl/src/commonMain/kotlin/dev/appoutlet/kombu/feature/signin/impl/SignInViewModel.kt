@@ -1,7 +1,6 @@
 package dev.appoutlet.kombu.feature.signin.impl
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import dev.appoutlet.kombu.core.logging.logger
 import dev.appoutlet.kombu.core.mvi.Action
 import dev.appoutlet.kombu.core.mvi.ContainerHost
@@ -11,7 +10,6 @@ import dev.appoutlet.kombu.core.mvi.container
 import dev.appoutlet.kombu.core.mvi.emitAction
 import dev.appoutlet.kombu.core.mvi.emitState
 import dev.appoutlet.kombu.data.umami.auth.UmamiAuthRepository
-import kotlinx.coroutines.launch
 import org.koin.android.annotation.KoinViewModel
 
 @KoinViewModel
@@ -20,7 +18,17 @@ class SignInViewModel(
 ) : ViewModel(), ContainerHost<SignInAction, SignInEvent> {
     val log by logger()
 
-    override val container = container<SignInAction>(initialState = MviState.Success(SignInViewData))
+    init {
+        log.i { "View model started" }
+    }
+
+    override val container = container<SignInAction>(initialState = MviState.Success(SignInViewData)) {
+        onLoad()
+    }
+
+    fun onLoad() {
+        emitState(MviState.Success(SignInViewData))
+    }
 
     override fun onEvent(event: SignInEvent) {
         when (event) {
@@ -29,7 +37,7 @@ class SignInViewModel(
     }
 
     private fun onSubmit(username: String, password: String) = emitAction {
-        val user = umamiAuthRepository.login(username, password)
+        umamiAuthRepository.login(username, password)
         SignInAction.NavigateToHome
     }
 }

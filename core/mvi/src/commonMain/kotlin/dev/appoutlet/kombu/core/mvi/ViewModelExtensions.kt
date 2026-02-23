@@ -18,5 +18,3 @@ fun <SIDE_EFFECT : Any> ViewModel.container(
         onCreate = onCreate
     )
 }
-
-

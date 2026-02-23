@@ -18,7 +18,8 @@ import org.orbitmvi.orbit.compose.collectSideEffect
 fun <ScreenViewData : ViewData, SiteEffect : Action, Event> Screen(
     viewModelProvider: @Composable () -> ContainerHost<SiteEffect, Event>,
     modifier: Modifier = Modifier,
-    error: @Composable (Throwable?) -> Unit = { DefaultErrorIndicator(it?.message) },
+    onTryAgain: (() -> Unit)? = null,
+    error: @Composable (Throwable?) -> Unit = { DefaultErrorIndicator(it?.message, onTryAgain) },
     loading: @Composable (String?) -> Unit = { DefaultLoadingIndicator(it) },
     idle: @Composable () -> Unit = {},
     onAction: suspend (SiteEffect) -> Unit = {},
@@ -48,11 +49,13 @@ fun <ScreenViewData : ViewData, SiteEffect : Action, Event> Screen(
 
 @Composable
 private fun DefaultErrorIndicator(
-    errorMessage: String?
+    errorMessage: String?,
+    onTryAgain: (() -> Unit)?,
 ) {
     ErrorIndicator(
         modifier = Modifier.fillMaxSize(),
         stackTrace = errorMessage,
+        onTryAgain = onTryAgain
     )
 }
 
