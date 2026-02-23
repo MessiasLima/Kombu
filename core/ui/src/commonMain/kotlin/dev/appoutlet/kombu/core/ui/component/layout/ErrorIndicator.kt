@@ -35,6 +35,8 @@ import kombu.core.ui.generated.resources.error_hide_details
 import kombu.core.ui.generated.resources.error_show_details
 import org.jetbrains.compose.resources.stringResource
 
+// fixme: retry action
+
 @Composable
 fun ErrorIndicator(
     modifier: Modifier = Modifier,

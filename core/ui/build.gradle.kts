@@ -11,6 +11,14 @@ ext {
 
 apply(from = "$rootDir/gradle/script/core.gradle")
 
+kotlin {
+    android {
+        androidResources {
+            enable = true
+        }
+    }
+}
+
 dependencies {
     commonMainImplementation(project(":core:mvi"))
 

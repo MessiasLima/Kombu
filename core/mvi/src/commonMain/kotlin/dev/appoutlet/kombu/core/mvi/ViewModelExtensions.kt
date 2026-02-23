@@ -8,8 +8,15 @@ import org.orbitmvi.orbit.container
 import org.orbitmvi.orbit.syntax.Syntax
 
 fun <SIDE_EFFECT : Any> ViewModel.container(
+    initialState: MviState = MviState.Idle,
     buildSettings: SettingsBuilder.() -> Unit = {},
     onCreate: (suspend Syntax<MviState, SIDE_EFFECT>.() -> Unit)? = null
 ): Container<MviState, SIDE_EFFECT> {
-    return viewModelScope.container(MviState.Idle, buildSettings, onCreate)
+    return viewModelScope.container(
+        initialState = initialState,
+        buildSettings = buildSettings,
+        onCreate = onCreate
+    )
 }
+
+
