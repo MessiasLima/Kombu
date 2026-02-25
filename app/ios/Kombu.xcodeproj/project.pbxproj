@@ -11,7 +11,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		C9D4F62F2F44E93400E093CD /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		C9D4F62F2F44E93400E093CD /* Exceptions for "Kombu" folder in "Kombu" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -24,7 +24,7 @@
 		21B77910D038B9312DE9B74B /* Kombu */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				C9D4F62F2F44E93400E093CD /* PBXFileSystemSynchronizedBuildFileExceptionSet */,
+				C9D4F62F2F44E93400E093CD /* Exceptions for "Kombu" folder in "Kombu" target */,
 			);
 			path = Kombu;
 			sourceTree = "<group>";
