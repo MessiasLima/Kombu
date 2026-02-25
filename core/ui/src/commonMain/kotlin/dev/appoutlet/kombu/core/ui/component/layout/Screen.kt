@@ -17,19 +17,21 @@ import org.orbitmvi.orbit.compose.collectSideEffect
 
 @Suppress("UNCHECKED_CAST")
 @Composable
-fun <ScreenViewData : ViewData, SiteEffect : Action, Event> Screen(
-    viewModelProvider: @Composable () -> ContainerHost<SiteEffect, Event>,
+fun <ScreenViewData : ViewData, SiteEffect : Action> Screen(
+    viewModelProvider: @Composable () -> ContainerHost<SiteEffect>,
     modifier: Modifier = Modifier,
     onTryAgain: (() -> Unit)? = null,
     error: @Composable (Throwable?) -> Unit = { DefaultErrorIndicator(it?.message, onTryAgain) },
     loading: @Composable (String?) -> Unit = { DefaultLoadingIndicator(it) },
     idle: @Composable () -> Unit = {},
     onAction: suspend (SiteEffect, Navigator) -> Unit = { _, _ -> },
-    content: @Composable (viewData: ScreenViewData, onEvent: (Event) -> Unit) -> Unit,
+    content: @Composable (viewData: ScreenViewData) -> Unit,
 ) {
     val navigator = LocalNavigator.current
     val viewModel = viewModelProvider()
     val state by viewModel.collectAsState()
+
+    // Here we handle the actions emited by the view model.
     viewModel.collectSideEffect(sideEffect = {
         onAction(it, navigator)
     })
@@ -44,7 +46,7 @@ fun <ScreenViewData : ViewData, SiteEffect : Action, Event> Screen(
                 val viewData = remember(state) {
                     state.data as? ScreenViewData ?: error("View data type mismatch")
                 }
-                content(viewData, viewModel::onEvent)
+                content(viewData)
             }
 
             MviState.Idle -> idle()

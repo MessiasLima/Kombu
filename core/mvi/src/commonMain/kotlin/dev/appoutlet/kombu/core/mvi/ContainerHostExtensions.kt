@@ -1,6 +1,6 @@
 package dev.appoutlet.kombu.core.mvi
 
-fun <SideEffect : Action, Event> ContainerHost<SideEffect, Event>.emitState(
+fun <SideEffect : Action> ContainerHost<SideEffect>.emitState(
     showLoading: Boolean = true,
     block: suspend () -> MviState
 ) {
@@ -15,13 +15,13 @@ fun <SideEffect : Action, Event> ContainerHost<SideEffect, Event>.emitState(
     }
 }
 
-fun <SideEffect : Action, Event> ContainerHost<SideEffect, Event>.emitState(mviState: MviState) {
+fun <SideEffect : Action> ContainerHost<SideEffect>.emitState(mviState: MviState) {
     intent {
         reduce { mviState }
     }
 }
 
-fun <SideEffect : Action, Event> ContainerHost<SideEffect, Event>.emitAction(
+fun <SideEffect : Action> ContainerHost<SideEffect>.emitAction(
     showLoading: Boolean = true,
     block: suspend () -> SideEffect
 ) {

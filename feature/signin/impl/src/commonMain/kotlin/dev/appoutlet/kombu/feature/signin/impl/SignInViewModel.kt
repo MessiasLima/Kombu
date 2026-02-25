@@ -1,7 +1,6 @@
 package dev.appoutlet.kombu.feature.signin.impl
 
 import androidx.lifecycle.ViewModel
-import dev.appoutlet.kombu.core.logging.logger
 import dev.appoutlet.kombu.core.mvi.Action
 import dev.appoutlet.kombu.core.mvi.ContainerHost
 import dev.appoutlet.kombu.core.mvi.MviState
@@ -12,33 +11,27 @@ import dev.appoutlet.kombu.core.mvi.emitState
 import dev.appoutlet.kombu.data.umami.auth.UmamiAuthRepository
 import org.koin.android.annotation.KoinViewModel
 
+// We cant use Hilt because it is JVM only, and we want to share this code with iOS, so we use Koin instead
 @KoinViewModel
 class SignInViewModel(
     private val umamiAuthRepository: UmamiAuthRepository,
-) : ViewModel(), ContainerHost<SignInAction, SignInEvent> {
-    val log by logger()
+) : ViewModel(), ContainerHost<SignInAction> {
 
-    init {
-        log.i { "View model started" }
-    }
-
-    override val container = container<SignInAction>(initialState = MviState.Success(SignInViewData)) {
-        onLoad()
-    }
-
-    fun onLoad() {
+    // The ContainerHost interface and this container property are part of the MVI architecture library: Orbit.
+    // The container holds the state and actions for the view model.
+    override val container = container<SignInAction> {
+        // This is the initial loading block. It is called when the start observing the state on the container.
         emitState(MviState.Success(SignInViewData))
     }
 
-    override fun onEvent(event: SignInEvent) {
-        when (event) {
-            is SignInEvent.OnSubmit -> onSubmit(event.username, event.password)
-        }
+    fun onTryAgain() {
+        emitState(MviState.Success(SignInViewData))
     }
 
-    private fun onSubmit(username: String, password: String) = emitAction {
-        umamiAuthRepository.login(username, password)
-        SignInAction.NavigateToHome
+    fun onEvent(event: SignInEvent) {
+        when (event) {
+            is SignInEvent.OnSubmit -> emitAction { SignInAction.NavigateToHome }
+        }
     }
 }
 

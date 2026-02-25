@@ -5,6 +5,7 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -56,33 +57,51 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun SignInScreen() {
     val viewModel = koinViewModel<SignInViewModel>()
-    Screen<SignInViewData, SignInAction, SignInEvent>(
-        viewModelProvider = { viewModel },
-        onAction = ::onAction,
-        onTryAgain = viewModel::onLoad
-    ) { _, onEvent ->
+
+    // Similar to the CdsStateScreen
+    Screen(
+        viewModelProvider = { viewModel }, // providing the view model instance
+        onTryAgain = viewModel::onTryAgain, // optional: what happens when the user clicks on try again in case of an error
+        onAction = ::onAction, // handling the actions emitted by the view model
+    ) { viewData: SignInViewData ->
+
+        // The screen content
         Scaffold { paddingValues ->
-            Box(
-                modifier = Modifier.fillMaxSize().padding(paddingValues),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Icon(modifier = Modifier.size(64.dp), imageVector = Lucide.ChartLine, contentDescription = null)
-                    Text(
-                        text = stringResource(Res.string.sign_in_title),
-                        style = MaterialTheme.typography.displayMedium
-                    )
-                    ElevatedCard(modifier = Modifier.widthInNarrow().padding(vertical = 16.dp)) {
-                        SignInForm(onEvent)
-                    }
-                }
+
+            // I split this to a separate composable just for readability
+            SignInScreenContent(
+                modifier = Modifier.padding(paddingValues),
+                onEvent = viewModel::onEvent
+            )
+        }
+    }
+}
+
+@Composable
+private fun SignInScreenContent(
+    onEvent: (SignInEvent) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(modifier = Modifier.size(64.dp), imageVector = Lucide.ChartLine, contentDescription = null)
+            Text(
+                text = stringResource(Res.string.sign_in_title),
+                style = MaterialTheme.typography.displayMedium
+            )
+            ElevatedCard(modifier = Modifier.widthInNarrow(400.dp).padding(vertical = 16.dp)) {
+                SignInForm(onEvent)
             }
         }
     }
 }
+
 
 @Composable
 private fun SignInForm(onEvent: (SignInEvent) -> Unit) {
