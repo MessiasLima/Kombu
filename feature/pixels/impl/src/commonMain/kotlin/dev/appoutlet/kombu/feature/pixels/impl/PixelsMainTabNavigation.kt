@@ -4,7 +4,7 @@ import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import com.composables.icons.lucide.LayoutGrid
 import com.composables.icons.lucide.Lucide
-import dev.appoutlet.kombu.core.navigation.MainTabNavigation
+import dev.appoutlet.kombu.core.navigation.levels.MainTabNavigation
 import dev.appoutlet.kombu.feature.pixels.PixelsDestination
 import kombu.feature.pixels.impl.generated.resources.Res
 import kombu.feature.pixels.impl.generated.resources.pixels_tab

@@ -3,7 +3,7 @@ package dev.appoutlet.kombu.feature.signin.impl
 import androidx.lifecycle.ViewModel
 import dev.appoutlet.kombu.core.mvi.Action
 import dev.appoutlet.kombu.core.mvi.ContainerHost
-import dev.appoutlet.kombu.core.mvi.MviState
+import dev.appoutlet.kombu.core.mvi.State
 import dev.appoutlet.kombu.core.mvi.ViewData
 import dev.appoutlet.kombu.core.mvi.container
 import dev.appoutlet.kombu.core.mvi.emitAction
@@ -21,11 +21,11 @@ class SignInViewModel(
     // The container holds the state and actions for the view model.
     override val container = container<SignInAction> {
         // This is the initial loading block. It is called when the start observing the state on the container.
-        emitState(MviState.Success(SignInViewData))
+        emitState(State.Success(SignInViewData))
     }
 
     fun onTryAgain() {
-        emitState(MviState.Success(SignInViewData))
+        emitState(State.Success(SignInViewData))
     }
 
     fun onEvent(event: SignInEvent) {
@@ -35,7 +35,7 @@ class SignInViewModel(
     }
 }
 
-object SignInViewData : ViewData
+data object SignInViewData : ViewData
 
 sealed interface SignInAction : Action {
     object NavigateToHome : SignInAction

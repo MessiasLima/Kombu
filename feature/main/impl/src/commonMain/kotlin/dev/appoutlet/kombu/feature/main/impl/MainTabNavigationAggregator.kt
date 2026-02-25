@@ -1,6 +1,6 @@
 package dev.appoutlet.kombu.feature.main.impl
 
-import dev.appoutlet.kombu.core.navigation.MainTabNavigation
+import dev.appoutlet.kombu.core.navigation.levels.MainTabNavigation
 import org.koin.core.annotation.Single
 
 @Single

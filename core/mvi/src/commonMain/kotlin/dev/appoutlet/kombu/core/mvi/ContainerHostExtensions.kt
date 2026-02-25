@@ -2,22 +2,22 @@ package dev.appoutlet.kombu.core.mvi
 
 fun <SideEffect : Action> ContainerHost<SideEffect>.emitState(
     showLoading: Boolean = true,
-    block: suspend () -> MviState
+    block: suspend () -> State
 ) {
     intent {
         try {
-            if (showLoading) reduce { MviState.Loading() }
+            if (showLoading) reduce { State.Loading() }
             val newState = block()
             reduce { newState }
         } catch (throwable: Throwable) {
-            reduce { MviState.Error(throwable) }
+            reduce { State.Error(throwable) }
         }
     }
 }
 
-fun <SideEffect : Action> ContainerHost<SideEffect>.emitState(mviState: MviState) {
+fun <SideEffect : Action> ContainerHost<SideEffect>.emitState(state: State) {
     intent {
-        reduce { mviState }
+        reduce { state }
     }
 }
 
@@ -27,10 +27,10 @@ fun <SideEffect : Action> ContainerHost<SideEffect>.emitAction(
 ) {
     intent {
         try {
-            if (showLoading) reduce { MviState.Loading() }
+            if (showLoading) reduce { State.Loading() }
             postSideEffect(block())
         } catch (throwable: Throwable) {
-            reduce { MviState.Error(throwable) }
+            reduce { State.Error(throwable) }
         }
     }
 }

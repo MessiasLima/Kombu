@@ -14,6 +14,7 @@ import dev.appoutlet.kombu.core.ui.theme.KombuTheme
 import dev.appoutlet.kombu.feature.signin.SignInDestination
 import org.koin.compose.koinInject
 
+// This will be used in the Android, iOS and Desktop apps
 @Composable
 fun App() {
     KombuTheme {
@@ -23,11 +24,16 @@ fun App() {
 
 @Composable
 private fun Navigation() {
+    // The list of destinations
     val navigationAggregator = koinInject<AppNavigationAggregator>()
 
+    // Polymorphism config. KMP does not support reflection
     val config = remember(navigationAggregator) { getSavedStateConfiguration(navigationAggregator.navigation) }
+
+    // The navigation back stack
     val backStack = rememberNavBackStack(configuration = config, SignInDestination)
 
+    // Providing navigator (like the NavController) to be used by the screens
     CompositionLocalProvider(LocalNavigator provides Navigator(backStack)) {
         NavDisplay(
             backStack = backStack,
@@ -35,6 +41,7 @@ private fun Navigation() {
                 rememberSaveableStateHolderNavEntryDecorator(),
             ),
             entryProvider = entryProvider {
+                // setup all routes from the aggregator
                 for (navigation in navigationAggregator.navigation) { navigation.setupRoute(this) }
             },
         )

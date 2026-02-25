@@ -4,7 +4,7 @@ import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import com.composables.icons.lucide.Lucide
 import com.composables.icons.lucide.UserCog
-import dev.appoutlet.kombu.core.navigation.MainTabNavigation
+import dev.appoutlet.kombu.core.navigation.levels.MainTabNavigation
 import dev.appoutlet.kombu.feature.settings.SettingsDestination
 import kombu.feature.settings.impl.generated.resources.Res
 import kombu.feature.settings.impl.generated.resources.settings_tab

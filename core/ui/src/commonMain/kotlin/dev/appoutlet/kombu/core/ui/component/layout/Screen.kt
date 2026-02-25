@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import dev.appoutlet.kombu.core.mvi.Action
 import dev.appoutlet.kombu.core.mvi.ContainerHost
-import dev.appoutlet.kombu.core.mvi.MviState
+import dev.appoutlet.kombu.core.mvi.State
 import dev.appoutlet.kombu.core.mvi.ViewData
 import dev.appoutlet.kombu.core.navigation.LocalNavigator
 import dev.appoutlet.kombu.core.navigation.Navigator
@@ -38,18 +38,18 @@ fun <ScreenViewData : ViewData, SiteEffect : Action> Screen(
 
     AnimatedContent(modifier = modifier, targetState = state) { state ->
         when (state) {
-            is MviState.Error -> error(state.throwable)
+            is State.Error -> error(state.throwable)
 
-            is MviState.Loading -> loading(state.message)
+            is State.Loading -> loading(state.message)
 
-            is MviState.Success<*> -> {
+            is State.Success<*> -> {
                 val viewData = remember(state) {
                     state.data as? ScreenViewData ?: error("View data type mismatch")
                 }
                 content(viewData)
             }
 
-            MviState.Idle -> idle()
+            State.Idle -> idle()
         }
     }
 }
