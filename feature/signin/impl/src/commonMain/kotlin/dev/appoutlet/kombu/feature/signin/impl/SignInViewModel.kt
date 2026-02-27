@@ -1,10 +1,9 @@
 package dev.appoutlet.kombu.feature.signin.impl
 
 import androidx.lifecycle.ViewModel
-import dev.appoutlet.kombu.core.logging.logger
 import dev.appoutlet.kombu.core.mvi.Action
 import dev.appoutlet.kombu.core.mvi.ContainerHost
-import dev.appoutlet.kombu.core.mvi.MviState
+import dev.appoutlet.kombu.core.mvi.State
 import dev.appoutlet.kombu.core.mvi.ViewData
 import dev.appoutlet.kombu.core.mvi.container
 import dev.appoutlet.kombu.core.mvi.emitAction
@@ -15,34 +14,27 @@ import org.koin.android.annotation.KoinViewModel
 @KoinViewModel
 class SignInViewModel(
     private val umamiAuthRepository: UmamiAuthRepository,
-) : ViewModel(), ContainerHost<SignInAction, SignInEvent> {
-    val log by logger()
+) : ViewModel(), ContainerHost<SignInAction> {
 
-    init {
-        log.i { "View model started" }
+    override val container = container<SignInAction> {
+        emitState(State.Success(SignInViewData))
     }
 
-    override val container = container<SignInAction>(initialState = MviState.Success(SignInViewData)) {
-        onLoad()
+    fun onTryAgain() {
+        emitState(State.Success(SignInViewData))
     }
 
-    fun onLoad() {
-        emitState(MviState.Success(SignInViewData))
-    }
-
-    override fun onEvent(event: SignInEvent) {
+    fun onEvent(event: SignInEvent) {
         when (event) {
-            is SignInEvent.OnSubmit -> onSubmit(event.username, event.password)
+            is SignInEvent.OnSubmit -> emitAction {
+                umamiAuthRepository.login(event.username, event.password)
+                SignInAction.NavigateToHome
+            }
         }
-    }
-
-    private fun onSubmit(username: String, password: String) = emitAction {
-        umamiAuthRepository.login(username, password)
-        SignInAction.NavigateToHome
     }
 }
 
-object SignInViewData : ViewData
+data object SignInViewData : ViewData
 
 sealed interface SignInAction : Action {
     object NavigateToHome : SignInAction

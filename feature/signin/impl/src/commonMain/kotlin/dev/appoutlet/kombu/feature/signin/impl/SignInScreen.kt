@@ -56,29 +56,40 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun SignInScreen() {
     val viewModel = koinViewModel<SignInViewModel>()
-    Screen<SignInViewData, SignInAction, SignInEvent>(
+    Screen(
         viewModelProvider = { viewModel },
+        onTryAgain = viewModel::onTryAgain,
         onAction = ::onAction,
-        onTryAgain = viewModel::onLoad
-    ) { _, onEvent ->
+    ) { viewData: SignInViewData ->
         Scaffold { paddingValues ->
-            Box(
-                modifier = Modifier.fillMaxSize().padding(paddingValues),
-                contentAlignment = Alignment.Center
-            ) {
-                Column(
-                    modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(16.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Icon(modifier = Modifier.size(64.dp), imageVector = Lucide.ChartLine, contentDescription = null)
-                    Text(
-                        text = stringResource(Res.string.sign_in_title),
-                        style = MaterialTheme.typography.displayMedium
-                    )
-                    ElevatedCard(modifier = Modifier.widthInNarrow().padding(vertical = 16.dp)) {
-                        SignInForm(onEvent)
-                    }
-                }
+            SignInScreenContent(
+                modifier = Modifier.padding(paddingValues),
+                onEvent = viewModel::onEvent
+            )
+        }
+    }
+}
+
+@Composable
+private fun SignInScreenContent(
+    onEvent: (SignInEvent) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Box(
+        modifier = modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(
+            modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState()).padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Icon(modifier = Modifier.size(64.dp), imageVector = Lucide.ChartLine, contentDescription = null)
+            Text(
+                text = stringResource(Res.string.sign_in_title),
+                style = MaterialTheme.typography.displayMedium
+            )
+            ElevatedCard(modifier = Modifier.widthInNarrow(400.dp).padding(vertical = 16.dp)) {
+                SignInForm(onEvent)
             }
         }
     }

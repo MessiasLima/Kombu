@@ -1,36 +1,38 @@
 package dev.appoutlet.kombu.core.mvi
 
-fun <SideEffect : Action, Event> ContainerHost<SideEffect, Event>.emitState(
+fun <SideEffect : Action> ContainerHost<SideEffect>.emitState(
     showLoading: Boolean = true,
-    block: suspend () -> MviState
+    block: suspend () -> State
 ) {
     intent {
         try {
-            if (showLoading) reduce { MviState.Loading() }
+            if (showLoading) reduce { State.Loading() }
             val newState = block()
             reduce { newState }
         } catch (throwable: Throwable) {
-            reduce { MviState.Error(throwable) }
+            reduce { State.Error(throwable) }
         }
     }
 }
 
-fun <SideEffect : Action, Event> ContainerHost<SideEffect, Event>.emitState(mviState: MviState) {
+fun <SideEffect : Action> ContainerHost<SideEffect>.emitState(state: State) {
     intent {
-        reduce { mviState }
+        reduce { state }
     }
 }
 
-fun <SideEffect : Action, Event> ContainerHost<SideEffect, Event>.emitAction(
+fun <SideEffect : Action> ContainerHost<SideEffect>.emitAction(
     showLoading: Boolean = true,
     block: suspend () -> SideEffect
 ) {
     intent {
         try {
-            if (showLoading) reduce { MviState.Loading() }
+            val previousState = state
+            if (showLoading) reduce { State.Loading() }
             postSideEffect(block())
+            reduce { previousState }
         } catch (throwable: Throwable) {
-            reduce { MviState.Error(throwable) }
+            reduce { State.Error(throwable) }
         }
     }
 }

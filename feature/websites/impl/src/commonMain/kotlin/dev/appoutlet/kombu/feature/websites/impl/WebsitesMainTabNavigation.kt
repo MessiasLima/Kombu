@@ -4,7 +4,7 @@ import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.NavKey
 import com.composables.icons.lucide.Globe
 import com.composables.icons.lucide.Lucide
-import dev.appoutlet.kombu.core.navigation.MainTabNavigation
+import dev.appoutlet.kombu.core.navigation.levels.MainTabNavigation
 import dev.appoutlet.kombu.feature.websites.WebsitesDestination
 import kombu.feature.websites.impl.generated.resources.Res
 import kombu.feature.websites.impl.generated.resources.main_tab_websites

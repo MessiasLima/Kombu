@@ -24,10 +24,8 @@ fun App() {
 @Composable
 private fun Navigation() {
     val navigationAggregator = koinInject<AppNavigationAggregator>()
-
     val config = remember(navigationAggregator) { getSavedStateConfiguration(navigationAggregator.navigation) }
     val backStack = rememberNavBackStack(configuration = config, SignInDestination)
-
     CompositionLocalProvider(LocalNavigator provides Navigator(backStack)) {
         NavDisplay(
             backStack = backStack,
