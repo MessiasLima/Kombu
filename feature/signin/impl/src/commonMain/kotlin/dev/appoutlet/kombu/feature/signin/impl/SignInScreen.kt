@@ -56,18 +56,12 @@ import org.koin.compose.viewmodel.koinViewModel
 @Composable
 fun SignInScreen() {
     val viewModel = koinViewModel<SignInViewModel>()
-
-    // Similar to the CdsStateScreen
     Screen(
-        viewModelProvider = { viewModel }, // providing the view model instance
-        onTryAgain = viewModel::onTryAgain, // optional: what happens when the user clicks on tr
-        onAction = ::onAction, // handling the actions emitted by the view model
+        viewModelProvider = { viewModel },
+        onTryAgain = viewModel::onTryAgain,
+        onAction = ::onAction,
     ) { viewData: SignInViewData ->
-
-        // The screen content
         Scaffold { paddingValues ->
-
-            // I split this to a separate composable just for readability
             SignInScreenContent(
                 modifier = Modifier.padding(paddingValues),
                 onEvent = viewModel::onEvent

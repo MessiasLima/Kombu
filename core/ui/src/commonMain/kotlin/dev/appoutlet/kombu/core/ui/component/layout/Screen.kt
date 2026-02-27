@@ -31,7 +31,6 @@ fun <ScreenViewData : ViewData, SiteEffect : Action> Screen(
     val viewModel = viewModelProvider()
     val state by viewModel.collectAsState()
 
-    // Here we handle the actions emitted by the view model.
     viewModel.collectSideEffect(sideEffect = {
         onAction(it, navigator)
     })
