@@ -27,8 +27,10 @@ fun <SideEffect : Action> ContainerHost<SideEffect>.emitAction(
 ) {
     intent {
         try {
+            val reviousState = state
             if (showLoading) reduce { State.Loading() }
             postSideEffect(block())
+            reduce { reviousState }
         } catch (throwable: Throwable) {
             reduce { State.Error(throwable) }
         }

@@ -30,7 +30,10 @@ class SignInViewModel(
 
     fun onEvent(event: SignInEvent) {
         when (event) {
-            is SignInEvent.OnSubmit -> emitAction { SignInAction.NavigateToHome }
+            is SignInEvent.OnSubmit -> emitAction {
+                umamiAuthRepository.login(event.username, event.password)
+                SignInAction.NavigateToHome
+            }
         }
     }
 }

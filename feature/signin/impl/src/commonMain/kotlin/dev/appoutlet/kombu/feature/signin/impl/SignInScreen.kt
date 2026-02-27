@@ -5,7 +5,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -61,7 +60,7 @@ fun SignInScreen() {
     // Similar to the CdsStateScreen
     Screen(
         viewModelProvider = { viewModel }, // providing the view model instance
-        onTryAgain = viewModel::onTryAgain, // optional: what happens when the user clicks on try again in case of an error
+        onTryAgain = viewModel::onTryAgain, // optional: what happens when the user clicks on tr
         onAction = ::onAction, // handling the actions emitted by the view model
     ) { viewData: SignInViewData ->
 
@@ -101,7 +100,6 @@ private fun SignInScreenContent(
         }
     }
 }
-
 
 @Composable
 private fun SignInForm(onEvent: (SignInEvent) -> Unit) {
