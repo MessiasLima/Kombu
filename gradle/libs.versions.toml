@@ -53,7 +53,7 @@ compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose" }
 compose-ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "compose" }
 compose-ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose" }
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
-detekt-composeRules = "io.nlopez.compose.rules:detekt:0.5.6"
+detekt-composeRules = "io.nlopez.compose.rules:detekt:0.5.8"
 kermit-core = { module = "co.touchlab:kermit", version.ref = "kermit" }
 kermit-koin = { module = "co.touchlab:kermit-koin", version.ref = "kermit" }
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
